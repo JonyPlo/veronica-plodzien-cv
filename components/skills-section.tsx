@@ -28,11 +28,13 @@ export function SkillsSection({ items }: SkillsSectionProps) {
           {items.map((item, index) => (
             <li
               key={item.name}
-              className={`flex items-baseline justify-between gap-6 py-3.5${
-                index > 0 ? " border-t border-ink/10" : ""
-              }`}
+              className={
+                "flex items-baseline justify-between gap-6 py-3 border-ink/10" +
+                (index > 0 ? " border-t" : "") +
+                (index === items.length - 1 ? " border-b" : "")
+              }
             >
-              <span className="font-medium">{item.name}</span>
+              <span className="text-base font-medium md:text-[1.0625rem]">{item.name}</span>
               <span className="shrink-0 text-base text-ink-soft md:text-[0.9375rem]">
                 {item.level}
               </span>

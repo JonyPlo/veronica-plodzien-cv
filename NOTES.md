@@ -4,6 +4,14 @@ Source repo: `C:\Users\Jony\Desktop\Curriculum-Vero` (CRA). Target: `C:\Users\Jo
 Rounds 3–5: corrections and adjustments approved by the CV owner.
 From round 5 on, this file is written in English; the visible CV text values (in `data/cv.json`) stay in Spanish, unmodified.
 
+## Round 10b — Informática rows (owner's pinpoint adjustment)
+
+Owner request, scope-limited to the Informática section only:
+1. **Row padding 0.75rem** (`components/skills-section.tsx`): each row got `py-3` (12px top and bottom), so the 1px `border-ink/10` separator sits centered with air on both sides; the same line now also closes the block (a `border-b` on the last row, identical to the separator).
+2. **Sizes**: tool name `text-base md:text-[1.0625rem]` (16px mobile floor → **17px** desktop); "Nivel intermedio" already `text-base md:text-[0.9375rem]` (16 → **15px**), unchanged. Contrast re-verified in the browser: name 15.59:1, level 6.41:1 on the paper ground (both ≥ 4.5:1).
+3. **Root cause of the "rows too close" look**: the previous `py-3.5` had **never been compiled** — Tailwind v4's scanner misses class names directly glued to a `${` interpolation in a template literal (the candidate token becomes `py-3.5${…`), so the rows rendered with 0 padding silently. Fixed by building the className from clean string concatenation of quoted literals (every token now scannable); the built CSS now contains `.py-3{padding-block:calc(var(--spacing) * 3)}`. **Gotcha to remember: never glue a class token to `${` in Tailwind v4.**
+4. **Verified**: clean production build; production server on :3100 (owner's servers untouched); measured on the live page — 12px/12px row padding at both 1440 and 390, 17/15px (desktop) and 16/16px (mobile) sizes, separator 1px + closing 1px line both `ink/10`, 0 overflow, 0 console errors. Captures: `.impeccable/review/r10b-informatica-desktop.png`, `r10b-informatica-mobile.png`.
+
 ## Round 10 changes — critique + polish pass (hierarchy, readability, consistency)
 
 Owner request: run the impeccable skill — **critique first, then polish** — applying only changes that improve hierarchy, readability, or consistency. No new effects or animations. Off-limits (report-only, never touched): the hero's button hierarchy and photo/text alignment, the Contact section, and all font sizes.

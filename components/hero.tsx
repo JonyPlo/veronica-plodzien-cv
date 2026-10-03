@@ -57,10 +57,12 @@ export function Hero(props: HeroProps) {
         initial={reduce ? false : "hidden"}
         animate={reduce ? undefined : "show"}
       >
-        {/* Photo: soft arch, the quiet center of the page */}
+        {/* Photo: soft arch, the quiet center of the page. On phones it
+            takes ~70% of the available width (capped at 260px); from md up
+            it fills its grid track. */}
         <motion.div
           {...entrance}
-          className="mx-auto w-44 sm:w-52 md:mx-0 md:w-full"
+          className="mx-auto w-[min(70%,260px)] md:mx-0 md:w-full"
         >
           <div className="overflow-hidden rounded-b-2xl rounded-t-[999px] shadow-[0_18px_40px_-22px_rgba(20,38,63,0.45)] ring-1 ring-ink/10">
             <Image

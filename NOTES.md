@@ -4,6 +4,16 @@ Source repo: `C:\Users\Jony\Desktop\Curriculum-Vero` (CRA). Target: `C:\Users\Jo
 Rounds 3–5: corrections and adjustments approved by the CV owner.
 From round 5 on, this file is written in English; the visible CV text values (in `data/cv.json`) stay in Spanish, unmodified.
 
+## Round 9 changes — contact rows and mobile hero photo (owner's final adjustments)
+
+Requested by the owner; **only the contact section and the mobile hero photo** — nothing else in the design.
+
+1. **Contact: three rows, one shared structure** (`components/contact-section.tsx`): the round-8 merged “Teléfono / WhatsApp” row (a two-line label + a text-link “Abrir WhatsApp”) is replaced by three consistently-built rows — **Celular / Email / Ubicación** — sharing a single skeleton: on mobile the label sits above its value (13px, Ink Soft), from `sm` up the label takes a fixed 96px column (none of the three labels wraps) and the value sits to its right. This removes the previous mobile inconsistency (phone label wrapped to two lines, Email rendered as a two-column row, Ubicación stacked — all by accident of `flex-wrap`).
+2. **Celular row**: the number appears once (`tel:` link) plus a small outlined **“WhatsApp” pill** (`wa.me`; new copy key `whatsappButton`) — 36px minimum height (`min-h-9`), 14px navy text, 1px border at 30% navy, the secondary pills' hover language. Desktop: beside the number, center-aligned; mobile: below the number, left-aligned. Copy keys `phoneWhatsappLabel` / `whatsappOpen` removed; `phoneLabel` repurposed to “Celular”. The section-closing download button is unchanged.
+3. **Mobile hero photo** (`components/hero.tsx`): width `w-44 sm:w-52` (176/208px) → `w-[min(70%,260px)]` — ~70% of the available width (245px at a 390px viewport), capped at 260px from sm (640) up to md, so it grows monotonically into the md grid track (272/288px). Stays centered (`mx-auto`); the arch (`rounded-t-[999px]`, clamping to a semicircle) and its ring/shadow are untouched.
+4. **Verified** against a fresh production build served on port **3100** (the owner's dev server was left alone — at verification time nothing was listening on 3000–3199, so the capture port was free): Playwright, reduced-motion — no horizontal overflow at 390/1440; all three desktop labels single-line (23px each) with values sharing one left edge; the pill is exactly 36px, beside the number on desktop and below + left-aligned on mobile; every mobile row label-above-value; the photo measures 245×327 centered; zero console/page errors. Captures: `.impeccable/review/round9-contact-desktop.png`, `round9-contact-mobile.png`, `round9-hero-mobile.png` (full-page desktop/mobile refreshed too).
+5. `DESIGN.md` synced (contact rows + pill, contact-label sizes, hero photo sizing, Ink Soft line); `.gitignore` now ignores all `.impeccable/*.log`.
+
 ## Round 8 changes — final polish pass (button hierarchy, contact merge, focus, favicon, title)
 
 Requested by the owner; **layout/finish only** — no palette, type-family, font-size, content, or new-animation changes.

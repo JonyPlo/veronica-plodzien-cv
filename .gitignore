@@ -39,5 +39,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-.impeccable/server.log
-.impeccable/dev.log
+.impeccable/*.log

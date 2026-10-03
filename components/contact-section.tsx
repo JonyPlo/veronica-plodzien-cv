@@ -13,8 +13,12 @@ interface ContactSectionProps {
 const linkClasses =
   "text-navy underline decoration-ink/25 transition-colors duration-200 hover:decoration-terracotta";
 
-const smallLinkClasses =
-  "text-ink-soft underline decoration-ink/25 transition-colors duration-200 hover:decoration-terracotta";
+// Shared row structure for all three contact rows: on mobile the label sits
+// above its value (smaller, secondary color); from sm up the label is a
+// fixed-width column (never wraps) to the left of the value.
+const rowClasses = "flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3";
+const labelClasses =
+  "text-[0.8125rem] text-ink-soft sm:w-24 sm:shrink-0 sm:text-base md:text-[0.9375rem]";
 
 export function ContactSection({
   phone,
@@ -37,36 +41,38 @@ export function ContactSection({
 
       <Reveal delay={0.08}>
         <address className="mt-8 space-y-4 not-italic">
-          <p className="flex flex-wrap items-baseline gap-x-3">
-            <span className="w-24 shrink-0 text-base text-ink-soft md:text-[0.9375rem]">
-              {copy.contact.phoneWhatsappLabel}
+          <div className={rowClasses}>
+            <span className={labelClasses}>
+              {copy.contact.phoneLabel}
             </span>
-            <a href={`tel:${phoneLink}`} className={linkClasses}>
-              {phone}
-            </a>
-            <a
-              href={`https://wa.me/${whatsapp}`}
-              target="_blank"
-              rel="noreferrer"
-              className={smallLinkClasses}
-            >
-              {copy.contact.whatsappOpen}
-            </a>
-          </p>
-          <p className="flex flex-wrap items-baseline gap-x-3">
-            <span className="w-24 shrink-0 text-base text-ink-soft md:text-[0.9375rem]">
+            <div className="flex flex-col items-start gap-2.5 sm:flex-row sm:items-center sm:gap-3">
+              <a href={`tel:${phoneLink}`} className={linkClasses}>
+                {phone}
+              </a>
+              <a
+                href={`https://wa.me/${whatsapp}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-9 items-center rounded-full border border-navy/30 px-3.5 text-sm font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5"
+              >
+                {copy.contact.whatsappButton}
+              </a>
+            </div>
+          </div>
+          <div className={rowClasses}>
+            <span className={labelClasses}>
               {copy.contact.emailLabel}
             </span>
             <a href={`mailto:${email}`} className={linkClasses}>
               {email}
             </a>
-          </p>
-          <p className="flex flex-wrap items-baseline gap-x-3">
-            <span className="w-24 shrink-0 text-base text-ink-soft md:text-[0.9375rem]">
+          </div>
+          <div className={rowClasses}>
+            <span className={labelClasses}>
               {copy.contact.locationLabel}
             </span>
             <span>{location}</span>
-          </p>
+          </div>
         </address>
         <div className="mt-8">
           <DownloadCvButton className="w-full sm:w-auto" />

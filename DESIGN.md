@@ -134,7 +134,7 @@ A warm neutral ground, one strong hue, one decorative accent — the palette of 
 
 - **Cream Paper** (#faf7f2): the ground — the page background, and the fill of the timeline's "past" dots.
 - **Ink** (#1b1e26): primary text (body and entry headings) and the source for every hairline at low alpha: list dividers at 10%, the timeline's quiet guide at 15%, link underlines at 25%, the arch ring at 10%.
-- **Ink Soft** (#525b6b): secondary text — periods, descriptions, levels, contact labels, and the small "Abrir WhatsApp" link (6.4:1 on cream, well above AA).
+- **Ink Soft** (#525b6b): secondary text — periods, descriptions, levels, and the small mobile contact labels (6.4:1 on cream, well above AA).
 - *Declared but dormant:* `--paper-deep` (#f1ebe1) is defined in the shared token file (the token file is the single source of truth for the web and its future PDF twin) but no element of the shipped web build references it.
 
 ### Named Rules
@@ -158,7 +158,7 @@ A warm neutral ground, one strong hue, one decorative accent — the palette of 
 - **Headline** (600, 1.875rem → 2.25rem at sm, 1.2 → 1.11): section titles. Navy. Always preceded by the 32px terracotta hairline.
 - **Title** (600, 1.25rem → 1.5rem at sm, 1.4 → 1.33): entry headings — positions and degrees. Ink.
 - **Body** (400, 1rem / 1.625 at base → 1.125rem / 1.65 at md; company and institution names at 1.0625rem at md; the hero profile fixed at 1.125rem): everything that is not a heading. The profile is capped at 60ch, entry descriptions at 62ch.
-- **Label** (500, 1rem at base → 0.9375rem at md, 1.43, tracking +0.025em, tabular-nums): periods, levels, and contact labels. The mobile floor for all reading text is 16px.
+- **Label** (500, 1rem at base → 0.9375rem at md, 1.43, tracking +0.025em, tabular-nums): periods, levels, and contact labels — contact labels run smaller on phones (0.8125rem → 1rem at sm → 0.9375rem at md). The mobile floor for reading text is 16px; the mobile contact label is the one deliberate exception.
 
 ### Named Rules
 
@@ -170,7 +170,7 @@ A warm neutral ground, one strong hue, one decorative accent — the palette of 
 
 The reading sections share one column: max-width 45rem (720px), centered, with 20px gutters that widen to 32px at sm (≥640px / 40rem). The hero is full-width on mobile and caps at 67.5rem (1080px), centered, at lg. The page top breathes 40 → 64 → 80px (base → sm → md; md = 768px / 48rem); sections follow each other at 64px, widening to 96px at sm; each section's body starts 32px below its heading; the page ends with 80px of paper.
 
-The hero is the only two-column surface on the page: on mobile it is a stack (arch photo centered at 176px, 208px at sm), and at md it splits into a photo column and a text column — 17rem + 1fr with a 48px gap, 18rem + 1fr with 64px at lg — vertically centered, the portrait at 272px (288px at lg) on the left and the name/profile/actions on the right (the text column capped at 600px at lg). Everything else — the education entries, the skills name/level rows, the contact label/value rows — stays inside the reading column; their "two columns" are inline baseline rows, not layout grids.
+The hero is the only two-column surface on the page: on mobile it is a stack (arch photo centered at ~70% of the available width — 245px at 390 — capped at 260px from sm up to md, so it grows monotonically into the grid), and at md it splits into a photo column and a text column — 17rem + 1fr with a 48px gap, 18rem + 1fr with 64px at lg — vertically centered, the portrait at 272px (288px at lg) on the left and the name/profile/actions on the right (the text column capped at 600px at lg). Everything else — the education entries, the skills name/level rows, the contact label/value rows — stays inside the reading column; their "two columns" are inline baseline rows, not layout grids.
 
 The spacing rhythm rides the 4px grid; the steps the page actually uses: 2, 4, 6, 10, 12, 14, 16, 20, 24, 32, 40, 48, 64, 80, and 96px.
 
@@ -215,9 +215,9 @@ A 14px dot centered on a 1px vertical spine (the spine sits 7px from the column'
 
 Education and skills rows sit on 1px hairlines at 10% ink — never on the first row. Education: period → title → institution (navy) → level (label). Skills: a baseline-aligned name/level pair across the column (24px gap), 14px row padding.
 
-### Contact links
+### Contact rows
 
-Navy text with a 3px-offset underline, the underline at 25% ink; on hover the underline tints to terracotta. Labels sit in a fixed 96px column (16px base / 15px at md, Ink Soft). Teléfono and WhatsApp share one row: the number once (tel:), then the small Ink-Soft "Abrir WhatsApp" link (wa.me). The primary download button closes the section.
+Three rows — Celular, Email, Ubicación — on one shared structure: mobile sets the label above its value (13px, Ink Soft); from sm up the label takes a fixed 96px column (it never wraps) and the value sits to its right. Values are navy text with a 3px-offset underline at 25% ink; on hover the underline tints to terracotta. The Celular row carries the number once (tel:) plus a small outlined **WhatsApp** pill (wa.me) — 36px minimum height, 14px navy text, 1px border at 30% navy, the secondary pills' hover — beside the number on desktop, below it and left-aligned on mobile. Email and Ubicación are plain values. The primary download button closes the section.
 
 ### Motion
 

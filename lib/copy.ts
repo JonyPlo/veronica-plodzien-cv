@@ -30,9 +30,8 @@ export const copy = {
     current: "Actualidad",
   },
   contact: {
-    phoneLabel: "Teléfono",
-    phoneWhatsappLabel: "Teléfono / WhatsApp",
-    whatsappOpen: "Abrir WhatsApp",
+    phoneLabel: "Celular",
+    whatsappButton: "WhatsApp",
     emailLabel: "Email",
     locationLabel: "Ubicación",
   },

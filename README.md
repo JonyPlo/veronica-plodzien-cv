@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Currículum de Verónica Plodzien
 
-## Getting Started
+Web CV de una página. El contenido vive en [`data/cv.json`](data/cv.json)
+(textos aprobados, verbatim); esta app solo los renderiza.
 
-First, run the development server:
+## Stack
+
+- [Next.js](https://nextjs.org) (App Router, TypeScript)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [Motion](https://motion.dev) para las animaciones
+- pnpm
+
+## Comandos
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev        # desarrollo
+pnpm build      # build de producción
+pnpm start      # servidor de producción
+pnpm lint       # ESLint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contenido y años dinámicos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `data/cv.json` — única fuente de verdad (claves en inglés, valores en español).
+- Los marcadores `{years_in_role}` y `{career_years}` se resuelven en
+  [`lib/years.ts`](lib/years.ts) con el año actual en la zona horaria
+  `America/Argentina/Tucuman`. Si hay una marca desconocida o un marcador
+  mal usado, el build falla con un mensaje claro.
+- La página se revalida cada día (`revalidate = 86400`): los años se
+  recalculan sin redeploy.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Textos de interfaza
 
-## Learn More
+Todos los textos de UI (etiquetas, botones, metadatos SEO) viven en
+[`lib/copy.ts`](lib/copy.ts): claves en inglés, valores en español
+rioplatense neutro. Los componentes no hardcodean español.
 
-To learn more about Next.js, take a look at the following resources:
+## PDF
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`/cv.pdf` es por ahora un placeholder (HTTP 501). Cuando se implemente,
+se servirá desde esa misma URL y se descargará como
+`Veronica-Plodzien-CV.pdf`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Variables de entorno
 
-## Deploy on Vercel
+Copiar `.env.example` a `.env.local`:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `NEXT_PUBLIC_SITE_URL` — URL pública del sitio; alimenta la metadata
+  SEO / Open Graph.

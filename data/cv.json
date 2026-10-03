@@ -1,0 +1,74 @@
+{
+  "name": "Verónica Plodzien",
+  "photo": {
+    "original": "public/img-perfil.jpg",
+    "web": "public/img-perfil-600x800.webp"
+  },
+  "profile": "Soy una persona comprometida, responsable y siempre puntual, con gusto por el trabajo en equipo. Me caracterizo por ser prolija y detallista, y por brindar una atención cercana y empática. Cuento con {career_years} de trayectoria laboral, con experiencia en atención al público, ventas, manejo de caja y tareas administrativas, y me enfoco en que todo salga bien y en colaborar con los demás para lograr los mejores resultados.",
+  "contact": {
+    "city": "San Miguel de Tucumán",
+    "province": "Tucumán",
+    "country": "Argentina",
+    "phone": "+54 381 501-7189",
+    "phone_link": "+5493815017189",
+    "whatsapp": "5493815017189",
+    "email": "plodziennv@hotmail.com"
+  },
+  "experience": [
+    {
+      "from": 2015,
+      "to": null,
+      "current": true,
+      "company": "Café a los Mandarines",
+      "position": "Cajera / Vendedora",
+      "description": "Me desempeño como cajera y vendedora desde hace {years_in_role}. Atiendo a los clientes, colaboro con mis compañeros y me encargo de tareas administrativas, como los depósitos bancarios. Es una experiencia que me enseñó mucho sobre atención al público y trabajo en equipo."
+    },
+    {
+      "from": 2012,
+      "to": 2013,
+      "company": "Hospital del Niño Jesús",
+      "position": "Encargada (Lactario)",
+      "description": "Mi tarea principal era preparar fórmulas de leche adaptadas a las necesidades específicas de cada bebé. Esta experiencia me permitió desarrollar la precisión necesaria para asegurar su correcta nutrición."
+    },
+    {
+      "from": 2011,
+      "to": 2012,
+      "company": "Aegis Argentina",
+      "position": "Agente telefónico",
+      "description": "En el call center trabajé en el área del Banco Francés. Mi tarea consistía en contactar a clientes para ofrecerles tarjetas de crédito, siempre con el objetivo de cumplir las metas establecidas por mis superiores. Esta experiencia me permitió desarrollar habilidades de comunicación telefónica y técnicas de venta efectivas."
+    },
+    {
+      "from": 2009,
+      "to": 2010,
+      "company": "Alma by Nika",
+      "position": "Vendedora",
+      "description": "Vendía ropa femenina: ayudaba a los clientes a encontrar lo que buscaban y les hacía recomendaciones. Mi trabajo consistía en ofrecer un buen servicio y asegurarme de que los clientes salieran satisfechos con sus compras."
+    }
+  ],
+  "education": [
+    {
+      "from": 2007,
+      "to": 2010,
+      "level": "Terciario",
+      "institution": "Instituto JIM (Nivel Superior)",
+      "degree": "Técnica Superior en Nutrición"
+    },
+    {
+      "from": 2002,
+      "to": 2006,
+      "level": "Secundario",
+      "institution": "Liceo Remedio de Escalada de San Martín",
+      "degree": "Educación Polimodal (Orientación en ciencias naturales)"
+    }
+  ],
+  "computer_skills": [
+    {
+      "name": "Microsoft Excel",
+      "level": "Nivel intermedio"
+    },
+    {
+      "name": "Microsoft Word",
+      "level": "Nivel intermedio"
+    }
+  ]
+}

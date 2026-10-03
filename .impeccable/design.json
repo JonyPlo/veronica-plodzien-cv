@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-03T05:15:37Z",
+  "title": "Design System: Verónica Plodzien – Currículum Vitae",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cream Paper",
+        "canonical": "#faf7f2",
+        "tonalRamp": [
+          "oklch(15% 0.006 90)",
+          "oklch(26% 0.006 90)",
+          "oklch(38% 0.006 90)",
+          "oklch(49% 0.006 90)",
+          "oklch(61% 0.006 90)",
+          "oklch(72% 0.006 90)",
+          "oklch(84% 0.006 90)",
+          "oklch(95% 0.006 90)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1b1e26",
+        "tonalRamp": [
+          "oklch(15% 0.012 268)",
+          "oklch(26% 0.012 268)",
+          "oklch(38% 0.012 268)",
+          "oklch(49% 0.012 268)",
+          "oklch(61% 0.012 268)",
+          "oklch(72% 0.012 268)",
+          "oklch(84% 0.012 268)",
+          "oklch(95% 0.012 268)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "#525b6b",
+        "tonalRamp": [
+          "oklch(15% 0.022 258)",
+          "oklch(26% 0.022 258)",
+          "oklch(38% 0.022 258)",
+          "oklch(49% 0.022 258)",
+          "oklch(61% 0.022 258)",
+          "oklch(72% 0.022 258)",
+          "oklch(84% 0.022 258)",
+          "oklch(95% 0.022 258)"
+        ]
+      },
+      "navy": {
+        "role": "primary",
+        "displayName": "Deep Navy",
+        "canonical": "#1d3557",
+        "tonalRamp": [
+          "oklch(15% 0.062 252)",
+          "oklch(26% 0.062 252)",
+          "oklch(38% 0.062 252)",
+          "oklch(49% 0.062 252)",
+          "oklch(61% 0.062 252)",
+          "oklch(72% 0.062 252)",
+          "oklch(84% 0.062 252)",
+          "oklch(95% 0.062 252)"
+        ]
+      },
+      "navy-deep": {
+        "role": "primary",
+        "displayName": "Navy Deep",
+        "canonical": "#14263f",
+        "tonalRamp": [
+          "oklch(15% 0.055 256)",
+          "oklch(26% 0.055 256)",
+          "oklch(38% 0.055 256)",
+          "oklch(49% 0.055 256)",
+          "oklch(61% 0.055 256)",
+          "oklch(72% 0.055 256)",
+          "oklch(84% 0.055 256)",
+          "oklch(95% 0.055 256)"
+        ]
+      },
+      "terracotta": {
+        "role": "accent",
+        "displayName": "Terracotta",
+        "canonical": "#b3502f",
+        "tonalRamp": [
+          "oklch(15% 0.155 46)",
+          "oklch(26% 0.155 46)",
+          "oklch(38% 0.155 46)",
+          "oklch(49% 0.155 46)",
+          "oklch(61% 0.155 46)",
+          "oklch(72% 0.155 46)",
+          "oklch(84% 0.155 46)",
+          "oklch(95% 0.155 46)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The candidate's name — the single h1. Navy, nowhere else on the page."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles (Experiencia, Educación, Informática, Contacto). Navy, always preceded by the terracotta hairline."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Entry headings: positions and degrees. Ink."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Profile, descriptions, institutions — all non-heading text. Paragraph text at 1.625 line-height, capped at 62–65ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Periods, levels, contact labels — tabular figures, +0.025em tracking, 500 weight."
+      }
+    },
+    "shadows": [
+      {
+        "name": "arch-ambient",
+        "value": "0 18px 40px -22px rgba(20, 38, 63, 0.45)",
+        "purpose": "The page's only shadow: a diffuse Navy-Deep-tinted grounding under the arch portrait (large blur, heavy negative spread)."
+      },
+      {
+        "name": "arch-ring",
+        "value": "0 0 0 1px color-mix(in oklab, #1b1e26 10%, transparent)",
+        "purpose": "The page's only ring: a 1px ink hairline around the arch, keeping the photo from bleeding into the paper."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Easing for the hero entrance and all scroll reveals."
+      },
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Easing for color state transitions (buttons, links), 200ms."
+      },
+      {
+        "name": "hero-entrance",
+        "value": "600ms; opacity 0→1, y 18px→0; stagger 90ms; delay 50ms",
+        "purpose": "The hero (photo, name, hairline, profile, actions) staggered entrance on load. Once only."
+      },
+      {
+        "name": "reveal-in-view",
+        "value": "550ms; opacity 0→1, y 16px→0; fires once (viewport margin -12% 0 -8% 0); stagger 60ms (timeline entries) / 80ms (section bodies)",
+        "purpose": "Sections fade up as they enter the view, exactly once."
+      },
+      {
+        "name": "spine-draw",
+        "value": "spring (stiffness 60, damping 25) on scaleY 0→1, driven by scroll progress of the timeline (offset start 0.85 → end 0.5)",
+        "purpose": "The one authored moment: the navy timeline spine draws itself over the quiet ink guide as the story scrolls."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all of the above disabled: reveals resolve to a static visible state, the spine ships fully drawn, smooth scrolling is off",
+        "purpose": "Hard floor under prefers-reduced-motion: content is always visible by default; motion never hides it."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action (Llamar)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The filled navy pill — the first and strongest of the hero's four actions; darkens to Navy Deep on hover.",
+      "html": "<a class=\"ds-act-primary\">Llamar</a>",
+      "css": ".ds-act-primary { display: inline-flex; align-items: center; background-color: var(--navy); color: var(--paper); border-radius: 9999px; padding: 10px 20px; font-family: \"DM Sans\", Arial, sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.5; text-decoration: none; transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1); } .ds-act-primary:hover { background-color: var(--navy-deep); } .ds-act-primary:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Action (WhatsApp / Escribir un mail)",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined pill: 1px border at 30% navy, navy text; hover — solid navy border plus a 5% navy wash.",
+      "html": "<a class=\"ds-act-secondary\">WhatsApp</a>",
+      "css": ".ds-act-secondary { display: inline-flex; align-items: center; border: 1px solid color-mix(in oklab, var(--navy) 30%, transparent); background-color: transparent; color: var(--navy); border-radius: 9999px; padding: 10px 20px; font-family: \"DM Sans\", Arial, sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.5; text-decoration: none; transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1); } .ds-act-secondary:hover { border-color: var(--navy); background-color: color-mix(in oklab, var(--navy) 5%, transparent); } .ds-act-secondary:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Action (Descargar CV (PDF))",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Borderless, unfilled Ink-Soft text action; the quietest of the four — it warms to navy on hover.",
+      "html": "<a class=\"ds-act-text\">Descargar CV (PDF)</a>",
+      "css": ".ds-act-text { display: inline-flex; align-items: center; background-color: transparent; color: var(--ink-soft); border-radius: 9999px; padding: 10px 12px; font-family: \"DM Sans\", Arial, sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.5; text-decoration: none; transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1); } .ds-act-text:hover { color: var(--navy); } .ds-act-text:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
+    },
+    {
+      "name": "Section Heading",
+      "kind": "custom",
+      "refersTo": "section-kicker",
+      "description": "The section marker is a 32px × 1px terracotta hairline above the Fraunces navy headline — the only marker the page uses.",
+      "html": "<div class=\"ds-head\"><span class=\"ds-head-kicker\" aria-hidden=\"true\"></span><h2 class=\"ds-head-title\">Experiencia laboral</h2></div>",
+      "css": ".ds-head-kicker { display: block; width: 32px; height: 1px; margin: 0 0 16px; background-color: var(--terracotta); } .ds-head-title { margin: 0; font-family: \"Fraunces\", \"Times New Roman\", serif; font-size: 1.875rem; font-weight: 600; line-height: 1.2; color: var(--navy); }"
+    },
+    {
+      "name": "Timeline Entry",
+      "kind": "custom",
+      "refersTo": "timeline-dot-current",
+      "description": "A 14px dot centered on the 1px spine (7px from the edge, text 32px in). The quiet ink-15% guide is always present; the navy spine draws itself over it on scroll (the current dot is filled terracotta, past dots are paper-filled with a 1px navy-40% ring). The static capture below shows the undrawn state.",
+      "html": "<div class=\"ds-tl\"><span class=\"ds-tl-spine\" aria-hidden=\"true\"></span><span class=\"ds-tl-dot ds-tl-dot--now\" aria-hidden=\"true\"></span><p class=\"ds-tl-period\">2015 – Actualidad</p><h3 class=\"ds-tl-title\">Cajera / Vendedora</h3><p class=\"ds-tl-company\">Café a los Mandarines</p><p class=\"ds-tl-desc\">Me desempeño como cajera y vendedora desde hace 11 años.</p></div>",
+      "css": ".ds-tl { position: relative; padding-left: 32px; } .ds-tl-spine { position: absolute; left: 7px; top: 4px; bottom: 8px; width: 1px; background-color: color-mix(in oklab, var(--ink) 15%, transparent); } .ds-tl-spine--drawn { background-color: var(--navy); } .ds-tl-dot { position: absolute; left: 0; top: 4px; width: 14px; height: 14px; border-radius: 9999px; } .ds-tl-dot--now { background-color: var(--terracotta); } .ds-tl-dot--past { background-color: var(--paper); border: 1px solid color-mix(in oklab, var(--navy) 40%, transparent); } .ds-tl-period { margin: 0; font-family: \"DM Sans\", Arial, sans-serif; font-size: 0.875rem; font-weight: 500; line-height: 1.43; letter-spacing: 0.025em; font-variant-numeric: tabular-nums; color: var(--ink-soft); } .ds-tl-title { margin: 6px 0 0; font-family: \"Fraunces\", \"Times New Roman\", serif; font-size: 1.25rem; font-weight: 600; line-height: 1.4; color: var(--ink); } .ds-tl-company { margin: 4px 0 0; font-family: \"DM Sans\", Arial, sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.5; color: var(--navy); } .ds-tl-desc { margin: 12px 0 0; max-width: 62ch; font-family: \"DM Sans\", Arial, sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.625; color: var(--ink-soft); }"
+    },
+    {
+      "name": "List Row (skills / education)",
+      "kind": "custom",
+      "description": "Plain rows on 1px ink-10% hairlines (never on the first row). The skills variant is a baseline-aligned name/level pair across the column.",
+      "html": "<div class=\"ds-row\"><span class=\"ds-row-name\">Microsoft Excel</span><span class=\"ds-row-level\">Nivel intermedio</span></div>",
+      "css": ".ds-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 14px 0; border-top: 1px solid color-mix(in oklab, var(--ink) 10%, transparent); } .ds-row-name { font-family: \"DM Sans\", Arial, sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.5; color: var(--ink); } .ds-row-level { font-family: \"DM Sans\", Arial, sans-serif; font-size: 0.875rem; font-weight: 400; line-height: 1.43; color: var(--ink-soft); white-space: nowrap; }"
+    },
+    {
+      "name": "Contact Link",
+      "kind": "custom",
+      "description": "Navy underlined link, 3px underline offset, underline at 25% ink; the underline — not the text — tints to terracotta on hover.",
+      "html": "<a class=\"ds-link\">+54 381 501-7189</a>",
+      "css": ".ds-link { font-family: \"DM Sans\", Arial, sans-serif; font-size: 1rem; line-height: 1.5; color: var(--navy); text-decoration-line: underline; text-decoration-color: color-mix(in oklab, var(--ink) 25%, transparent); text-underline-offset: 3px; transition: text-decoration-color 0.2s cubic-bezier(0.4, 0, 0.2, 1); } .ds-link:hover { text-decoration-color: var(--terracotta); } .ds-link:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
+    },
+    {
+      "name": "Photo Arch",
+      "kind": "custom",
+      "description": "The one motif and the only framed object: top corners at 999px, bottom at 16px, a 1px ink-10% ring, and the page's only shadow (176px wide on mobile, ≤272px on the desktop column). The flat fill stands in for the portrait.",
+      "html": "<div class=\"ds-arch\"><div class=\"ds-arch-img\" role=\"img\" aria-label=\"Fotografía de perfil de Verónica Plodzien\"></div></div>",
+      "css": ".ds-arch { width: 176px; max-width: 100%; overflow: hidden; border-radius: 999px 999px 16px 16px; box-shadow: 0 0 0 1px color-mix(in oklab, var(--ink) 10%, transparent), 0 18px 40px -22px rgba(20, 38, 63, 0.45); } .ds-arch-img { aspect-ratio: 3 / 4; background-color: #e9e2d6; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Editorial Dossier",
+    "overview": "A quiet, warm, editorial dossier on cream paper. The page is one reading column and nothing else: it opens with the person — the portrait in its soft arch, the name in large Fraunces, a short profile, four ways to act — and then tells the career as a single drawn timeline, followed by education, a plain skills list, and contact. There are no cards, no boxes, no second background, and no icons; hierarchy is carried by type scale, hairlines, and generous whitespace. It is a document that looks typeset, not built.\n\nThe color discipline is the point: one strong color (deep navy) carries the identity, and a single warm accent (terracotta) appears only at the scale of hairlines, dots, and low-alpha tints. Motion is quiet and once-only — a staggered hero entrance, fade-up reveals as sections enter the view, and one authored moment: the timeline spine that draws itself as the story scrolls. Under prefers-reduced-motion everything becomes static and fully visible, which is a hard rule of the system, not an afterthought.",
+    "keyCharacteristics": [
+      "One reading column (max-width 42rem) on cream paper; section rhythm 64–96px, 32px between heading and body.",
+      "One framed object on the whole page: the arch portrait — echoed by the favicon, nowhere else.",
+      "Fraunces only for the name, section titles, and entry headings; DM Sans for everything else.",
+      "Terracotta strictly at decorative scale: 1px hairlines, the 14px \"now\" dot, low-alpha underline and selection tints.",
+      "Flat by default: exactly one soft diffuse shadow and one 1px ring, both under the arch.",
+      "One authored motion (the self-drawing spine); all other motion is once-only fade-up."
+    ],
+    "rules": [
+      {
+        "name": "The One Strong Color Rule",
+        "body": "Navy is the only strong hue on the page. Cream and the two inks carry the document; navy carries identity.",
+        "section": "colors"
+      },
+      {
+        "name": "The Decorative Scale Rule",
+        "body": "Terracotta lives only at the scale of hairline, dot, and low-alpha tint. Its rarity is the point; the moment it fills a surface or typesets text, it stops being an accent.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Fraunces is allowed on exactly three roles: the name, the section titles, and the entry headings. Every other character on the page is DM Sans — Inter is banned by the product.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Periods Rule",
+        "body": "Every period and date is set with tabular figures and +0.025em tracking, so the years of the timeline align vertically like a typeset table.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Shadow Rule",
+        "body": "Surfaces are flat and never cast shadows. The only shadow in the system is the one under the arch.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Frame Rule",
+        "body": "The arch is the only framed object on the page (ring + shadow). Everything else — every list, every section, every action — sits unframed on the paper. The favicon (a 64px tile with 14px rounded corners) echoes the frame: navy arch, terracotta dot, cream ground.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do ground every surface in Cream Paper (#faf7f2); the page has no second background.",
+      "Do set hierarchy with type scale and whitespace — 32px from heading to body, 64–96px between sections, hairlines between rows.",
+      "Do mark every section with the 32px terracotta hairline above its heading, and the 64px one under the name.",
+      "Do keep the page a single reading column (max-width 42rem, centered); the only two-column surface is the hero at md.",
+      "Do type every period, date, and year with tabular figures and +0.025em tracking.",
+      "Do divide list rows with 1px hairlines at 10% ink, never on the first row.",
+      "Do honor prefers-reduced-motion as a hard floor: reveals resolve to a static visible state, the spine is pre-drawn, smooth scrolling is off — content is never hidden by motion.",
+      "Do keep terracotta at the scale of marks: 1px hairlines, 14px dots, tints at 24% alpha or below."
+    ],
+    "donts": [
+      "Don't add cards, boxes, or panels — no surface is framed except the arch.",
+      "Don't add shadows; the arch's diffuse one is the system's only shadow (and its 1px ring the only ring).",
+      "Don't let terracotta type, fill, or border anything; its role is mark, not color.",
+      "Don't introduce a second accent color, gradients, or decorative icon or glyph systems — the page carries no icons at all.",
+      "Don't set small-caps or uppercase eyebrow text above section headings; the hairline is the marker.",
+      "Don't set the name anywhere but the single h1, or set Fraunces on any text that is not the name, a section title, or an entry heading."
+    ]
+  }
+}

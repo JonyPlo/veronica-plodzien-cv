@@ -1,0 +1,12 @@
+# Project memory — curriculum-vero-nuevo
+
+## Resume here (handoff, session 2026-10-03)
+- This project is the new CV of Verónica Plodzien. The old CRA repo (READ ONLY — never install/run it) is at `C:\Users\Jony\Desktop\Curriculum-Vero`; its git history holds the original literal texts from every round.
+- Content source of truth: `data/cv.json` — keys in English; visible text values in Spanish, approved verbatim by the CV owner. Do not rewrite, summarize or "improve" them.
+- Full decision/change history: `NOTES.md` (rounds 2–5; written in English from round 5 on — keep it in English).
+- STATUS: **app built and reviewed (round 6, 2026-10-03)** — Next.js 16 App Router + TS + Tailwind v4 + motion, pnpm. Finish review ended "Ready to ship" (detector zero findings); `DESIGN.md` + `.impeccable/design.json` written. NEXT TASK: real PDF generation for `/cv.pdf` (currently a 501 placeholder; suggested filename `Veronica-Plodzien-CV.pdf`). When the user says "continue / dónde quedamos": re-read `NOTES.md` (round 6 section) + `DESIGN.md` + `data/cv.json`, then proceed.
+- App facts: tokens in `app/globals.css` (paper #faf7f2, ink #1b1e26/soft #525b6b, navy #1d3557/deep #14263f, terracotta #b3502f decorative-only); Fraunces/DM Sans via next/font; all UI chrome text in `lib/copy.ts` (English keys, Spanish values); `revalidate = 86400` must stay a LITERAL (Next 16 extracts segment-config statically); year math in `lib/years.ts` (Tucumán timezone); reduced-motion = static final states (a hard floor — never branch element types between SSR/client to hide content); Playwright review scripts live in `C:\Users\Jony\.tools\playwright\cv-vero-*.js`; run with `pnpm dev` / `pnpm build && pnpm start`.
+- Hard rules: no empty sections in JSON or UI (no courses/certifications/languages/socials exist); no industry-specific orientation and no occupation title anywhere (the degree title lives only in education); no invented text.
+- Placeholders in the JSON are resolved at display time, never stored: `{career_years}` = current year − earliest experience year (2009); `{years_in_role}` = current year − current job `from` (2015); for past jobs `to − from`.
+- Assets: `public/img-perfil.jpg` (original 1200×1600) and `public/img-perfil-600x800.webp` (used by the web hero + og:image/twitter:image, served as `/img-perfil-600x800.webp` — never the `public/...` path). Authored favicon: `app/icon.svg` (arch motif).
+- Contact fields: `phone` (display, "+54 381 501-7189"), `phone_link` (tel: "+5493815017189"), `whatsapp` (wa.me "5493815017189").

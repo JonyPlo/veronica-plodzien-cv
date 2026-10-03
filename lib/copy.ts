@@ -17,6 +17,7 @@ export const copy = {
     callA11y: "Llamar al teléfono",
     whatsapp: "WhatsApp",
     whatsappA11y: "Chatear por WhatsApp",
+    whatsappNewTabCue: "(se abre en una nueva pestaña)",
     email: "Escribir un mail",
     downloadPdf: "Descargar CV (PDF)",
   },
@@ -37,4 +38,6 @@ export const copy = {
   },
   pdfPlaceholder:
     "El PDF de este currículum todavía está en construcción. Volvé en unos días.",
+  // Label of the single back-link on the /cv.pdf placeholder page (501).
+  pdfPlaceholderBack: "Volver al currículum",
 } as const;

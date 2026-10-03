@@ -32,10 +32,46 @@ typography:
     lineHeight: 1.5
   label:
     fontFamily: "DM Sans, 'Arial', sans-serif"
-    fontSize: "0.875rem"
+    fontSize: "1rem"
     fontWeight: 500
     lineHeight: 1.43
     letterSpacing: "0.025em"
+  body-md:
+    fontFamily: "DM Sans, 'Arial', sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 400
+    lineHeight: 1.65
+  company-md:
+    fontFamily: "DM Sans, 'Arial', sans-serif"
+    fontSize: "1.0625rem"
+    fontWeight: 400
+    lineHeight: 1.5
+  label-md:
+    fontFamily: "DM Sans, 'Arial', sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 500
+    lineHeight: 1.43
+    letterSpacing: "0.025em"
+  label-mobile:
+    fontFamily: "DM Sans, 'Arial', sans-serif"
+    fontSize: "0.8125rem"
+    fontWeight: 500
+    lineHeight: 1.43
+    letterSpacing: "0.025em"
+  standalone-serif:
+    # Only for the /cv.pdf placeholder page: it lives outside the app shell,
+    # where next/font cannot reach it, so it uses a system serif (same
+    # exemption as the favicon; see "Standalone Surfaces Rule" below).
+    fontFamily: "Georgia, 'Times New Roman', serif"
+    fontSize: "2rem"
+    fontWeight: 600
+    lineHeight: 1.15
+  standalone-sans:
+    # System sans for the /cv.pdf placeholder page body and link.
+    fontFamily: "-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+    fontSize: "1.0625rem"
+    fontWeight: 400
+    lineHeight: 1.65
 rounded:
   arch-top: "999px"
   arch-bottom: "16px"
@@ -113,7 +149,6 @@ The color discipline is the point: one strong color (deep navy) carries the iden
 - One reading column (max-width 42rem) on cream paper; section rhythm 64–96px, 32px between heading and body.
 - One framed object on the whole page: the arch portrait, nowhere else.
 - Terracotta strictly at decorative scale: 1px hairlines, the 14px "now" dot, low-alpha underline and selection tints, and the keyboard focus ring.
-- Terracotta strictly at decorative scale: 1px hairlines, the 14px "now" dot, low-alpha underline and selection tints.
 - Flat by default: exactly one soft diffuse shadow and one 1px ring, both under the arch.
 - One authored motion (the self-drawing spine); all other motion is once-only fade-up.
 
@@ -157,8 +192,8 @@ A warm neutral ground, one strong hue, one decorative accent — the palette of 
 - **Display** (600, clamp(2.75rem, 7vw, 3.75rem) — 44 to 60px, 1.04, tracking −0.015em): the name, the single `h1`. Navy. Nowhere else on the page.
 - **Headline** (600, 1.875rem → 2.25rem at sm, 1.2 → 1.11): section titles. Navy. Always preceded by the 32px terracotta hairline.
 - **Title** (600, 1.25rem → 1.5rem at sm, 1.4 → 1.33): entry headings — positions and degrees. Ink.
-- **Body** (400, 1rem / 1.625 at base → 1.125rem / 1.65 at md; company and institution names at 1.0625rem at md; the hero profile fixed at 1.125rem): everything that is not a heading. The profile is capped at 60ch, entry descriptions at 62ch.
-- **Label** (500, 1rem at base → 0.9375rem at md, 1.43, tracking +0.025em, tabular-nums): periods, levels, and contact labels — contact labels run smaller on phones (0.8125rem → 1rem at sm → 0.9375rem at md). The mobile floor for reading text is 16px; the mobile contact label is the one deliberate exception.
+- **Body** (400, 1rem / 1.625 at base → 1.125rem / 1.65 at md — the `body-md` step; company and institution names at 1.0625rem at md — the `company-md` step; the hero profile fixed at 1.125rem): everything that is not a heading. The profile is capped at 60ch, entry descriptions at 62ch.
+- **Label** (500, 1rem at base → 0.9375rem at md — the `label-md` step, 1.43, tracking +0.025em, tabular-nums): periods, levels, and contact labels — contact labels run smaller on phones (0.8125rem — the `label-mobile` step — → 1rem at sm → 0.9375rem at md). The mobile floor for reading text is 16px; the mobile contact label is the one deliberate exception.
 
 ### Named Rules
 
@@ -166,11 +201,13 @@ A warm neutral ground, one strong hue, one decorative accent — the palette of 
 
 **The Tabular Periods Rule.** Every period and date is set with tabular figures and +0.025em tracking, so the years of the timeline align vertically like a typeset table.
 
+**The Standalone Surfaces Rule.** Two surfaces live outside the app shell, where `next/font` cannot reach them: the favicon (`icon.svg`) and the `/cv.pdf` 501 placeholder page (a standalone HTML document). They use the system stacks declared in the token block — `standalone-serif` (Georgia/Times New Roman) for headings and `standalone-sans` (the platform UI stack) for text — instead of Fraunces/DM Sans. That is the only sanctioned use of any other font; everything inside the app shell follows the Two Voices Rule. The `/cv.pdf` page mirrors the design tokens as inline CSS (paper, inks, navy, terracotta), is marked `noindex`, and is deliberately minimal: one heading, the approved placeholder line, and a single back-link.
+
 ## Layout
 
 The reading sections share one column: max-width 45rem (720px), centered, with 20px gutters that widen to 32px at sm (≥640px / 40rem). The hero is full-width on mobile and caps at 67.5rem (1080px), centered, at lg. The page top breathes 40 → 64 → 80px (base → sm → md; md = 768px / 48rem); sections follow each other at 64px, widening to 96px at sm; each section's body starts 32px below its heading; the page ends with 80px of paper.
 
-The hero is the only two-column surface on the page: on mobile it is a stack (arch photo centered at ~70% of the available width — 245px at 390 — capped at 260px from sm up to md, so it grows monotonically into the grid), and at md it splits into a photo column and a text column — 17rem + 1fr with a 48px gap, 18rem + 1fr with 64px at lg — vertically centered, the portrait at 272px (288px at lg) on the left and the name/profile/actions on the right (the text column capped at 600px at lg). Everything else — the education entries, the skills name/level rows, the contact label/value rows — stays inside the reading column; their "two columns" are inline baseline rows, not layout grids.
+The hero is the only two-column surface on the page: on mobile it is a stack (arch photo centered at ~70% of the available width — 245px at 390 — capped at 260px from sm up to md, so it grows monotonically into the grid), and at md it splits into a photo column and a text column — 17rem + 1fr with a 48px gap, 18rem + 1fr with 64px at lg — vertically centered, the portrait at 272px (288px at lg) on the left and the name/profile/actions on the right (the text column capped at 600px at lg). The portrait is the page's LCP: it loads with `loading="eager"` and `fetchPriority="high"` (the Next 16 pattern; the deprecated `priority` prop is not used). Everything else — the education entries, the skills name/level rows, the contact label/value rows — stays inside the reading column; their "two columns" are inline baseline rows, not layout grids.
 
 The spacing rhythm rides the 4px grid; the steps the page actually uses: 2, 4, 6, 10, 12, 14, 16, 20, 24, 32, 40, 48, 64, 80, and 96px.
 
@@ -200,8 +237,7 @@ The form language is *arch, hairline, pill*. The portrait is cut as a soft arch 
 ### Buttons — two tiers, two rows
 
 - **Primary (Descargar CV (PDF)):** filled Deep Navy pill, 10px × 20px padding (44px tall), DM Sans at 500, paper (light) text, one inline download glyph (1.75 stroke, round caps). It opens row one of the hero alone and is repeated, unchanged, at the end of the contact section. Hover darkens to Navy Deep.
-- **Secondary (Llamar, WhatsApp, Escribir un mail):** 1px border at 30% navy, navy text, the same pill, padding and height as the primary (44px); hover — border to solid navy, 5% navy wash. The three sit on one row in row two of the hero with equal size and equal 12px gap.
-- Mobile (below sm): every button is full-width and stacked, the download first. All color changes transition over 200ms.
+- **Secondary (Llamar, WhatsApp, Escribir un mail):** 1px border at 30% navy, navy text, the same pill, padding and height as the primary (44px); hover — border to solid navy, 5% navy wash. The three sit on one row in row two of the hero with equal size and equal 12px gap. Their accessible names state the action ("Llamar al teléfono", "Chatear por WhatsApp (se abre en una nueva pestaña)", the visible labels stay unchanged) and the WhatsApp link is `rel="noopener noreferrer"`. Mobile (below sm): every button is full-width and stacked, the download first. All color changes transition over 200ms — but only `background-color`, `border-color`, and `color`: never the whole color group, so the terracotta focus ring appears instantly (WCAG 2.4.11 — a focus indicator must never fade in). The contact section's value links are the one documented exception, keeping the 200ms `transition-colors` (owner-approved area, rounds 8–9).
 
 ### Section heading
 
@@ -222,6 +258,8 @@ Three rows — Celular, Email, Ubicación — on one shared structure: mobile se
 ### Motion
 
 The hero enters once on load: opacity and 18px rise over 600ms, ease `cubic-bezier(0.16, 1, 0.3, 1)`, 90ms stagger. Section bodies and entries fade up (16px, 550ms) once as they enter the view, staggered 60–80ms. The only scroll-driven animation is the spine's spring-drawn scaleY (scroll progress of the list, offset "start 0.85" → "end 0.5"; spring stiffness 60, damping 25). Under `prefers-reduced-motion` every one of these resolves to its static final state — reveals render visible, the spine ships fully drawn, smooth scrolling is off.
+
+**The no-JS floor.** The SSR HTML ships the hidden initial styles inline (`opacity:0` on every revealed element, `scaleY(0)` on the spine), so a visitor without JavaScript — or a no-JS print — would otherwise see a blank page. A `<noscript>` style at the top of the body (active only when scripting is disabled, inert for JS users) forces every animation-hidden element into its final visible state. JS users are unaffected: the animations arm at mount exactly as before.
 
 ## Do's and Don'ts
 

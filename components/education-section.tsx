@@ -30,7 +30,7 @@ export function EducationSection({ items }: EducationSectionProps) {
           {items.map((item, index) => (
             <li
               key={item.degree}
-              className={index > 0 ? "border-t border-ink/10 py-5 first:pt-0" : "py-5"}
+              className={index > 0 ? "border-t border-ink/10 py-5" : "py-5"}
             >
               <p className="text-base font-medium tracking-wide text-ink-soft tabular-nums md:text-[0.9375rem]">
                 {item.period}

@@ -70,6 +70,11 @@ export function Hero(props: HeroProps) {
               alt={props.photoAlt}
               width={600}
               height={800}
+              // The hero portrait is the page's LCP: load it eagerly with
+              // high fetch priority. (Next 16: `priority` is deprecated;
+              // eager + fetchPriority is the documented pattern.)
+              loading="eager"
+              fetchPriority="high"
               className="h-auto w-full"
             />
           </div>
@@ -110,21 +115,28 @@ export function Hero(props: HeroProps) {
             <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-nowrap sm:items-center sm:gap-3">
               <a
                 href={`tel:${props.phoneLink}`}
-                className="inline-flex w-full items-center justify-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5 md:px-4 lg:px-5 sm:w-auto"
+                // The visible text ("Llamar") hides the number; the
+                // accessible name says what the action actually does.
+                aria-label={copy.hero.callA11y}
+                className="inline-flex w-full items-center justify-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-[background-color,border-color,color] duration-200 hover:border-navy hover:bg-navy/5 md:px-4 lg:px-5 sm:w-auto"
               >
                 {copy.hero.call}
               </a>
               <a
                 href={`https://wa.me/${props.whatsapp}`}
                 target="_blank"
-                rel="noreferrer"
-                className="inline-flex w-full items-center justify-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5 md:px-4 lg:px-5 sm:w-auto"
+                rel="noopener noreferrer"
+                // The visible text ("WhatsApp") is ambiguous for
+                // screen-reader users; the name states the action and the
+                // new-tab behavior.
+                aria-label={`${copy.hero.whatsappA11y} ${copy.hero.whatsappNewTabCue}`}
+                className="inline-flex w-full items-center justify-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-[background-color,border-color,color] duration-200 hover:border-navy hover:bg-navy/5 md:px-4 lg:px-5 sm:w-auto"
               >
                 {copy.hero.whatsapp}
               </a>
               <a
                 href={`mailto:${props.email}`}
-                className="inline-flex w-full items-center justify-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5 md:px-4 lg:px-5 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-[background-color,border-color,color] duration-200 hover:border-navy hover:bg-navy/5 md:px-4 lg:px-5 sm:w-auto"
               >
                 {copy.hero.email}
               </a>

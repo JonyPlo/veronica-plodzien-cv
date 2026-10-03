@@ -18,6 +18,18 @@ const cv = loadCv();
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
+// The only origin this app can produce. Guarded on purpose: this is a
+// build-time constant, so an invalid literal must fail loudly at module
+// load (build time) rather than be silently swallowed.
+function constantUrl(raw: string): URL {
+  try {
+    return new URL(raw);
+  } catch {
+    throw new Error(`Invalid constant URL: ${raw}`);
+  }
+}
+const localOrigin = constantUrl("http://localhost:3000");
+
 /**
  * The site URL comes from an env var, never hardcoded. Until the site is
  * deployed there is no domain, so local development uses the local origin
@@ -26,7 +38,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
  * og/twitter tags.
  */
 function resolveMetadataBase(): URL {
-  if (!siteUrl) return new URL("http://localhost:3000");
+  if (!siteUrl) return localOrigin;
   try {
     return new URL(siteUrl);
   } catch {
@@ -34,7 +46,7 @@ function resolveMetadataBase(): URL {
       `[metadata] NEXT_PUBLIC_SITE_URL is not a valid URL ("${siteUrl}"); ` +
         "using the local origin instead.",
     );
-    return new URL("http://localhost:3000");
+    return localOrigin;
   }
 }
 
@@ -75,7 +87,25 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es" className={`${fraunces.variable} ${dmSans.variable} antialiased`}>
-      <body>{children}</body>
+      <body>
+        {/* No-JS fallback: the motion entrance/reveal animations ship
+            `opacity:0` (and the timeline spine ships `scaleY(0)`) inline in
+            the SSR HTML. Without JavaScript nothing would ever clear those,
+            so a no-JS visitor — or a no-JS print — would see a blank page.
+            Browsers activate the style below only when scripting is
+            disabled (it is inert otherwise), forcing every element the
+            animations hide into its final visible state. */}
+        <noscript dangerouslySetInnerHTML={{ __html: NO_JS_FALLBACK_STYLE }} />
+        {children}
+      </body>
     </html>
   );
 }
+
+// Static by construction: this string is the exact no-JS fallback CSS and
+// never contains user input or interpolation, so there is nothing to
+// sanitize. dangerouslySetInnerHTML is the only way React emits raw markup
+// inside <noscript> (its children are serialized as text), which is why
+// the classic noscript pattern uses it.
+const NO_JS_FALLBACK_STYLE =
+  "<style>[style*=\"opacity:0\"],[style*=\"scaleY(0)\"]{opacity:1!important;transform:none!important}</style>";

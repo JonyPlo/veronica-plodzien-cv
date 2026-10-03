@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 .impeccable/*.log
 .impeccable/*.html
+
+# lighthouse (local audit artifacts - keep out of the repo)
+.impeccable/lh-*

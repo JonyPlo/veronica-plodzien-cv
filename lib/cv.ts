@@ -10,11 +10,11 @@ export interface CvContact {
   city: string;
   province: string;
   country: string;
-  /** Display value, e.g. "+54 381 501-7189". */
+  /** Display value, e.g. "+54 XXX XXX-XXXX". */
   phone: string;
-  /** tel: value, e.g. "+5493815017189". */
+  /** tel: value, e.g. "+549XXXXXXXXXX". */
   phoneLink: string;
-  /** wa.me digits, e.g. "5493815017189" (country + area code + number). */
+  /** wa.me digits, e.g. "549XXXXXXXXXX" (country + area code + number). */
   whatsapp: string;
   email: string;
 }

@@ -104,15 +104,15 @@ components:
 
 **Creative North Star: "The Editorial Dossier"**
 
-A quiet, warm, editorial dossier on cream paper. The page is one reading column and nothing else: it opens with the person — the portrait in its soft arch, the name in large Fraunces, a short profile, four ways to act — and then tells the career as a single drawn timeline, followed by education, a plain skills list, and contact. There are no cards, no boxes, no second background, and no icons; hierarchy is carried by type scale, hairlines, and generous whitespace. It is a document that looks typeset, not built.
+A quiet, warm, editorial dossier on cream paper. The page is one reading column and nothing else: it opens with the person — the portrait in its soft arch, the name in large Fraunces, a short profile, four ways to act — and then tells the career as a single drawn timeline, followed by education, a plain skills list, and contact. There are no cards, no boxes, no second background, and no icon systems; hierarchy is carried by type scale, hairlines, and generous whitespace. It is a document that looks typeset, not built.
 
 The color discipline is the point: one strong color (deep navy) carries the identity, and a single warm accent (terracotta) appears only at the scale of hairlines, dots, and low-alpha tints. Motion is quiet and once-only — a staggered hero entrance, fade-up reveals as sections enter the view, and one authored moment: the timeline spine that draws itself as the story scrolls. Under `prefers-reduced-motion` everything becomes static and fully visible, which is a hard rule of the system, not an afterthought.
 
 **Key Characteristics:**
 
 - One reading column (max-width 42rem) on cream paper; section rhythm 64–96px, 32px between heading and body.
-- One framed object on the whole page: the arch portrait — echoed by the favicon, nowhere else.
-- Fraunces only for the name, section titles, and entry headings; DM Sans for everything else.
+- One framed object on the whole page: the arch portrait, nowhere else.
+- Terracotta strictly at decorative scale: 1px hairlines, the 14px "now" dot, low-alpha underline and selection tints, and the keyboard focus ring.
 - Terracotta strictly at decorative scale: 1px hairlines, the 14px "now" dot, low-alpha underline and selection tints.
 - Flat by default: exactly one soft diffuse shadow and one 1px ring, both under the arch.
 - One authored motion (the self-drawing spine); all other motion is once-only fade-up.
@@ -123,18 +123,18 @@ A warm neutral ground, one strong hue, one decorative accent — the palette of 
 
 ### Primary
 
-- **Deep Navy** (#1d3557): the page's one strong color. It sets the name, every section heading, the company/institution names, the primary action, the timeline spine that draws, the keyboard focus outline, and the browser chrome (theme-color).
+- **Deep Navy** (#1d3557): the page's one strong color. It sets the name, every section heading, the company/institution names, the primary action, the timeline spine that draws, and the browser chrome (theme-color).
 - **Navy Deep** (#14263f): the pressed state of the primary action, and the tint (at 45% alpha) of the arch's soft shadow.
 
 ### Secondary
 
-- **Terracotta** (#b3502f): the decorative accent. It appears as 1px hairlines (the mark under the name and the mark above each section heading), as the filled "now" dot on the timeline, as the hover tint of contact-link underlines, as the text-selection color at 24% alpha, and as the favicon dot. It never sets body text, buttons, or large fills.
+- **Terracotta** (#b3502f): the decorative accent. It appears as 1px hairlines (the mark under the name and the mark above each section heading), as the filled "now" dot on the timeline, as the hover tint of contact-link underlines, as the keyboard focus ring (2px outline, 3px offset — 4.9:1 on the cream ground, above the 3:1 non-text minimum), and as the text-selection color at 24% alpha. It never sets body text, buttons, or large fills.
 
 ### Neutral
 
 - **Cream Paper** (#faf7f2): the ground — the page background, and the fill of the timeline's "past" dots.
 - **Ink** (#1b1e26): primary text (body and entry headings) and the source for every hairline at low alpha: list dividers at 10%, the timeline's quiet guide at 15%, link underlines at 25%, the arch ring at 10%.
-- **Ink Soft** (#525b6b): secondary text — periods, descriptions, levels, contact labels, and the download action at rest.
+- **Ink Soft** (#525b6b): secondary text — periods, descriptions, levels, contact labels, and the small "Abrir WhatsApp" link (6.4:1 on cream, well above AA).
 - *Declared but dormant:* `--paper-deep` (#f1ebe1) is defined in the shared token file (the token file is the single source of truth for the web and its future PDF twin) but no element of the shipped web build references it.
 
 ### Named Rules
@@ -143,7 +143,7 @@ A warm neutral ground, one strong hue, one decorative accent — the palette of 
 
 **The Decorative Scale Rule.** Terracotta lives only at the scale of hairline, dot, and low-alpha tint. Its rarity is the point; the moment it fills a surface or typesets text, it stops being an accent.
 
-*Drift note:* the direction contract's first-viewport line said "terracotta only as a hairline and the 'now' dot"; the build additionally paints it on link-hover underlines, text selection (24%), and the favicon dot. All three stay inside the decorative scale, so the recorded rule is the scale, and the contract's narrower list was a description of the first viewport, not a doctrine.
+*Drift note:* the direction contract's first-viewport line said "terracotta only as a hairline and the 'now' dot"; the build additionally paints it on link-hover underlines, text selection (24%), and the keyboard focus ring. All three stay inside the decorative scale, so the recorded rule is the scale, and the contract's narrower list was a description of the first viewport, not a doctrine.
 
 ## Typography
 
@@ -157,8 +157,8 @@ A warm neutral ground, one strong hue, one decorative accent — the palette of 
 - **Display** (600, clamp(2.75rem, 7vw, 3.75rem) — 44 to 60px, 1.04, tracking −0.015em): the name, the single `h1`. Navy. Nowhere else on the page.
 - **Headline** (600, 1.875rem → 2.25rem at sm, 1.2 → 1.11): section titles. Navy. Always preceded by the 32px terracotta hairline.
 - **Title** (600, 1.25rem → 1.5rem at sm, 1.4 → 1.33): entry headings — positions and degrees. Ink.
-- **Body** (400, 1rem, 1.5; paragraph text at 1.625; the hero profile at 1.125rem): everything that is not a heading. The profile is capped at 65ch, entry descriptions at 62ch.
-- **Label** (500, 0.875rem, 1.43, tracking +0.025em, tabular-nums): periods, levels, and contact labels.
+- **Body** (400, 1rem / 1.625 at base → 1.125rem / 1.65 at md; company and institution names at 1.0625rem at md; the hero profile fixed at 1.125rem): everything that is not a heading. The profile is capped at 60ch, entry descriptions at 62ch.
+- **Label** (500, 1rem at base → 0.9375rem at md, 1.43, tracking +0.025em, tabular-nums): periods, levels, and contact labels. The mobile floor for all reading text is 16px.
 
 ### Named Rules
 
@@ -168,9 +168,9 @@ A warm neutral ground, one strong hue, one decorative accent — the palette of 
 
 ## Layout
 
-One reading column: max-width 42rem (672px), centered, with 20px gutters that widen to 32px at sm (≥640px / 40rem). The page top breathes 40 → 64 → 80px (base → sm → md; md = 768px / 48rem); sections follow each other at 64px, widening to 96px at sm; each section's body starts 32px below its heading; the page ends with 80px of paper.
+The reading sections share one column: max-width 45rem (720px), centered, with 20px gutters that widen to 32px at sm (≥640px / 40rem). The hero is full-width on mobile and caps at 67.5rem (1080px), centered, at lg. The page top breathes 40 → 64 → 80px (base → sm → md; md = 768px / 48rem); sections follow each other at 64px, widening to 96px at sm; each section's body starts 32px below its heading; the page ends with 80px of paper.
 
-The hero is the only two-column surface on the page: on mobile it is a stack (arch photo centered at 176px, 208px at sm), and at md it splits into two equal columns (32px → 48px gap) with the portrait ≤272px on the left and the name/profile/actions on the right. Everything else — the education entries, the skills name/level rows, the contact label/value rows — stays inside the single column; their "two columns" are inline baseline rows, not layout grids.
+The hero is the only two-column surface on the page: on mobile it is a stack (arch photo centered at 176px, 208px at sm), and at md it splits into a photo column and a text column — 17rem + 1fr with a 48px gap, 18rem + 1fr with 64px at lg — vertically centered, the portrait at 272px (288px at lg) on the left and the name/profile/actions on the right (the text column capped at 600px at lg). Everything else — the education entries, the skills name/level rows, the contact label/value rows — stays inside the reading column; their "two columns" are inline baseline rows, not layout grids.
 
 The spacing rhythm rides the 4px grid; the steps the page actually uses: 2, 4, 6, 10, 12, 14, 16, 20, 24, 32, 40, 48, 64, 80, and 96px.
 
@@ -187,22 +187,21 @@ Flat by default. There are no cards, boxes, or panels on this page, and depth is
 
 **The One Shadow Rule.** Surfaces are flat and never cast shadows. The only shadow in the system is the one under the arch.
 
-**The One Frame Rule.** The arch is the only framed object on the page (ring + shadow). Everything else — every list, every section, every action — sits unframed on the paper. The favicon (a 64px tile with 14px rounded corners) echoes the frame: navy arch, terracotta dot, cream ground.
+**The One Frame Rule.** The arch is the only framed object on the page (ring + shadow). Everything else — every list, every section, every action — sits unframed on the paper. The favicon no longer echoes it: it is a separate brand mark — the serif "VP" monogram, cream on navy, in a 64px tile with 14px-rounded corners.
 
 ## Shapes
 
 The form language is *arch, hairline, pill*. The portrait is cut as a soft arch — top corners at 999px (a full semicircle), bottom corners at 16px — the page's only frame and the world's one motif. Action buttons are full pills (fully rounded). Timeline markers are 14px circles centered on a 1px vertical spine. Everything else is square and unframed: list dividers are 1px hairlines at 10% ink, and section markers are 1px terracotta hairlines — 32px wide above each section heading, 64px under the name.
 
-*Drift note:* PRODUCT.md's evidence list records "no favicon asset" among the absences; the build ships `app/icon.svg` echoing the arch motif (navy arch, terracotta dot, 14px-rounded cream tile). The build wins — the favicon is a later addition that echoes an existing motif, not a new one.
+*Drift note:* PRODUCT.md's evidence list records "no favicon asset" among the absences; the build ships `app/icon.svg` as a serif "VP" monogram (cream on navy, 14px-rounded tile) — a brand mark requested by the owner, deliberately not the arch motif.
 
 ## Components
 
-### Buttons — three tiers, one row
+### Buttons — two tiers, two rows
 
-- **Primary (Llamar):** filled Deep Navy pill, 10px × 20px padding, DM Sans at 500; hover darkens to Navy Deep.
-- **Secondary (WhatsApp, Escribir un mail):** 1px border at 30% navy, navy text, same pill and padding; hover — border to solid navy, 5% navy wash behind the text.
-- **Text (Descargar CV (PDF)):** no border, no fill, Ink-Soft text, 10px × 12px padding; hover — navy.
-- The row wraps (10px → 12px gap at sm); hierarchy is left-to-right, filled button first. All color changes transition over 200ms.
+- **Primary (Descargar CV (PDF)):** filled Deep Navy pill, 10px × 20px padding (44px tall), DM Sans at 500, paper (light) text, one inline download glyph (1.75 stroke, round caps). It opens row one of the hero alone and is repeated, unchanged, at the end of the contact section. Hover darkens to Navy Deep.
+- **Secondary (Llamar, WhatsApp, Escribir un mail):** 1px border at 30% navy, navy text, the same pill, padding and height as the primary (44px); hover — border to solid navy, 5% navy wash. The three sit on one row in row two of the hero with equal size and equal 12px gap.
+- Mobile (below sm): every button is full-width and stacked, the download first. All color changes transition over 200ms.
 
 ### Section heading
 
@@ -218,7 +217,7 @@ Education and skills rows sit on 1px hairlines at 10% ink — never on the first
 
 ### Contact links
 
-Navy text with a 3px-offset underline, the underline at 25% ink; on hover the underline tints to terracotta. Labels sit in a fixed 96px column at 14px Ink Soft.
+Navy text with a 3px-offset underline, the underline at 25% ink; on hover the underline tints to terracotta. Labels sit in a fixed 96px column (16px base / 15px at md, Ink Soft). Teléfono and WhatsApp share one row: the number once (tel:), then the small Ink-Soft "Abrir WhatsApp" link (wa.me). The primary download button closes the section.
 
 ### Motion
 
@@ -231,7 +230,7 @@ The hero enters once on load: opacity and 18px rise over 600ms, ease `cubic-bezi
 - **Do** ground every surface in Cream Paper (#faf7f2); the page has no second background.
 - **Do** set hierarchy with type scale and whitespace — 32px from heading to body, 64–96px between sections, hairlines between rows.
 - **Do** mark every section with the 32px terracotta hairline above its heading, and the 64px one under the name.
-- **Do** keep the page a single reading column (max-width 42rem, centered); the only two-column surface is the hero at md.
+- **Do** keep the reading sections in a 720px (45rem) centered column; the hero spans up to 1080px (67.5rem) at lg and is the only two-column surface (from md).
 - **Do** type every period, date, and year with tabular figures and +0.025em tracking.
 - **Do** divide list rows with 1px hairlines at 10% ink, never on the first row.
 - **Do** honor `prefers-reduced-motion` as a hard floor: reveals resolve to a static visible state, the spine is pre-drawn, smooth scrolling is off — content is never hidden by motion.
@@ -242,6 +241,6 @@ The hero enters once on load: opacity and 18px rise over 600ms, ease `cubic-bezi
 - **Don't** add cards, boxes, or panels — no surface is framed except the arch.
 - **Don't** add shadows; the arch's diffuse one is the system's only shadow (and its 1px ring the only ring).
 - **Don't** let terracotta type, fill, or border anything; its role is mark, not color.
-- **Don't** introduce a second accent color, gradients, or decorative icon or glyph systems — the page carries no icons at all.
+- **Don't** introduce a second accent color, gradients, or decorative icon or glyph systems — the page carries no icon system; the single functional glyph (the download, on the PDF button) is the owner-requested exception.
 - **Don't** set small-caps or uppercase eyebrow text above section headings; the hairline is the marker.
 - **Don't** set the name anywhere but the single `h1`, or set Fraunces on any text that is not the name, a section title, or an entry heading.

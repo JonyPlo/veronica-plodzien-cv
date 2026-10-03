@@ -7,8 +7,8 @@
  */
 export const copy = {
   page: {
-    titleSuffix: "Currículum Vitae",
-    title: (name: string) => `${name} – ${copy.page.titleSuffix}`,
+    titleSuffix: "Currículum vitae",
+    title: (name: string) => `${name} · ${copy.page.titleSuffix}`,
     description: (name: string) => `Currículum vitae de ${name}`,
     photoAlt: (name: string) => `Fotografía de perfil de ${name}`,
   },
@@ -31,7 +31,8 @@ export const copy = {
   },
   contact: {
     phoneLabel: "Teléfono",
-    whatsappLabel: "WhatsApp",
+    phoneWhatsappLabel: "Teléfono / WhatsApp",
+    whatsappOpen: "Abrir WhatsApp",
     emailLabel: "Email",
     locationLabel: "Ubicación",
   },

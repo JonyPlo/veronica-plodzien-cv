@@ -1,5 +1,6 @@
 import { copy } from "@/lib/copy";
 import { Reveal } from "@/components/reveal";
+import { DownloadCvButton } from "@/components/download-button";
 
 interface ContactSectionProps {
   phone: string;
@@ -11,6 +12,9 @@ interface ContactSectionProps {
 
 const linkClasses =
   "text-navy underline decoration-ink/25 transition-colors duration-200 hover:decoration-terracotta";
+
+const smallLinkClasses =
+  "text-ink-soft underline decoration-ink/25 transition-colors duration-200 hover:decoration-terracotta";
 
 export function ContactSection({
   phone,
@@ -35,23 +39,18 @@ export function ContactSection({
         <address className="mt-8 space-y-4 not-italic">
           <p className="flex flex-wrap items-baseline gap-x-3">
             <span className="w-24 shrink-0 text-base text-ink-soft md:text-[0.9375rem]">
-              {copy.contact.phoneLabel}
+              {copy.contact.phoneWhatsappLabel}
             </span>
             <a href={`tel:${phoneLink}`} className={linkClasses}>
               {phone}
             </a>
-          </p>
-          <p className="flex flex-wrap items-baseline gap-x-3">
-            <span className="w-24 shrink-0 text-base text-ink-soft md:text-[0.9375rem]">
-              {copy.contact.whatsappLabel}
-            </span>
             <a
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
               rel="noreferrer"
-              className={linkClasses}
+              className={smallLinkClasses}
             >
-              {phone}
+              {copy.contact.whatsappOpen}
             </a>
           </p>
           <p className="flex flex-wrap items-baseline gap-x-3">
@@ -69,6 +68,9 @@ export function ContactSection({
             <span>{location}</span>
           </p>
         </address>
+        <div className="mt-8">
+          <DownloadCvButton className="w-full sm:w-auto" />
+        </div>
       </Reveal>
     </section>
   );

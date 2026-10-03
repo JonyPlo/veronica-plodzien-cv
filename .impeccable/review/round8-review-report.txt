@@ -1,0 +1,548 @@
+
+== app-page-desktop.png ==
+{
+ "title": "Verónica Plodzien · Currículum vitae",
+ "lang": "es",
+ "h1": [
+  "Verónica Plodzien"
+ ],
+ "h2": [
+  "Experiencia laboral",
+  "Educación",
+  "Informática",
+  "Contacto"
+ ],
+ "links": [
+  "/cv.pdf",
+  "tel:+5493815017189",
+  "https://wa.me/5493815017189",
+  "mailto:plodziennv@hotmail.com",
+  "tel:+5493815017189",
+  "https://wa.me/5493815017189",
+  "mailto:plodziennv@hotmail.com",
+  "/cv.pdf"
+ ],
+ "bodyHeight": 2986
+}
+issues: console.error: A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+          <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+                  <SegmentViewNode type="page" pagePath="page.tsx">
+                    <SegmentTrieNode>
+                    <CvPage>
+                      ...
+                        <motion.div className="grid items..." variants={undefined} initial={false} animate={undefined}>
+                          <div className="grid items..." style={{}} ref={function useMotionRef.useCallback}>
+                            <motion.div initial={{opacity:1,y:0}} animate={{opacity:1,y:0}} className="mx-auto w-...">
+                              <div
+                                className="mx-auto w-44 sm:w-52 md:mx-0 md:w-full"
+                                style={{
++                                 opacity: 1
+-                                 opacity: "0"
++                                 transform: "none"
+-                                 transform: "translateY(18px)"
+                                }}
+                                ref={function useMotionRef.useCallback}
+                              >
+                            <div className="min-w-0 lg...">
+                              <motion.h1 initial={{opacity:1,y:0}} animate={{opacity:1,y:0}} className="font-displ...">
+                                <h1
+                                  className="font-display text-[clamp(2.75rem,7vw,3.75rem)] font-semibold leading-[1.0..."
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(18px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
++                                 Verónica Plodzien
+                              <motion.div initial={{opacity:1,y:0}} animate={{opacity:1,y:0}} aria-hidden={true} ...>
+                                <div
+                                  aria-hidden={true}
+                                  className="mt-5 h-px w-16 bg-terracotta"
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(18px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                              <motion.p initial={{opacity:1,y:0}} animate={{opacity:1,y:0}} className="mt-5 max-w...">
+                                <p
+                                  className="mt-5 max-w-[60ch] text-lg leading-relaxed"
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(18px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
++                                 Soy una persona comprometida, responsable y siempre puntual, con gusto por el trabajo...
+                              <motion.div initial={{opacity:1,y:0}} animate={{opacity:1,y:0}} className="mt-8 flex ...">
+                                <div
+                                  className="mt-8 flex flex-col gap-2.5 sm:gap-3"
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(18px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                      <div className="mx-auto w-...">
+                        <ExperienceSection items={[...]}>
+                          <section aria-labelledby="seccion-ex..." className="mt-16 sm:m...">
+                            <Reveal>
+                              <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className={undefined}
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                            <div ref={{current:null}} className="relative mt-8">
+                              <div>
+                              <div
+                                aria-hidden={true}
++                               className="absolute bottom-2 left-[7px] top-1 w-px bg-navy"
+-                               className="absolute bottom-2 left-[7px] top-1 w-px origin-top bg-navy"
+-                               style={{transform:"scaleY(0)"}}
+                              >
+                              <ol className="space-y-10...">
+                                <li className="relative pl-8">
+                                  <span>
+                                  <Reveal delay={0}>
+                                    <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                      <div
+                                        className={undefined}
+                                        style={{
++                                         opacity: 1
+-                                         opacity: "0"
++                                         transform: "none"
+-                                         transform: "translateY(16px)"
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                <li className="relative pl-8">
+                                  <span>
+                                  <Reveal delay={0.06}>
+                                    <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                      <div
+                                        className={undefined}
+                                        style={{
++                                         opacity: 1
+-                                         opacity: "0"
++                                         transform: "none"
+-                                         transform: "translateY(16px)"
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                <li className="relative pl-8">
+                                  <span>
+                                  <Reveal delay={0.12}>
+                                    <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                      <div
+                                        className={undefined}
+                                        style={{
++                                         opacity: 1
+-                                         opacity: "0"
++                                         transform: "none"
+-                                         transform: "translateY(16px)"
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                <li className="relative pl-8">
+                                  <span>
+                                  <Reveal delay={0.18}>
+                                    <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                      <div
+                                        className={undefined}
+                                        style={{
++                                         opacity: 1
+-                                         opacity: "0"
++                                         transform: "none"
+-                                         transform: "translateY(16px)"
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                        <EducationSection>
+                          <section aria-labelledby="seccion-ed..." className="mt-16 sm:m...">
+                            <Reveal>
+                              <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className={undefined}
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                            <Reveal delay={0.08} className="mt-8">
+                              <motion.div className="mt-8" initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className="mt-8"
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                        <SkillsSection>
+                          <section aria-labelledby="seccion-in..." className="mt-16 sm:m...">
+                            <Reveal>
+                              <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className={undefined}
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                            <Reveal delay={0.08} className="mt-8">
+                              <motion.div className="mt-8" initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className="mt-8"
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                        <ContactSection>
+                          <section aria-labelledby="seccion-co..." className="mt-16 pb-2...">
+                            <Reveal>
+                              <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className={undefined}
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                            <Reveal delay={0.08}>
+                              <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className={undefined}
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                  ...
+                ...
+
+saved C:\Users\Jony\Desktop\curriculum-vero-nuevo\.impeccable\review\app-page-desktop.png
+
+== app-page-mobile.png ==
+{
+ "title": "Verónica Plodzien · Currículum vitae",
+ "lang": "es",
+ "h1": [
+  "Verónica Plodzien"
+ ],
+ "h2": [
+  "Experiencia laboral",
+  "Educación",
+  "Informática",
+  "Contacto"
+ ],
+ "links": [
+  "/cv.pdf",
+  "tel:+5493815017189",
+  "https://wa.me/5493815017189",
+  "mailto:plodziennv@hotmail.com",
+  "tel:+5493815017189",
+  "https://wa.me/5493815017189",
+  "mailto:plodziennv@hotmail.com",
+  "/cv.pdf"
+ ],
+ "bodyHeight": 3585
+}
+issues: console.error: A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+          <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+                  <SegmentViewNode type="page" pagePath="page.tsx">
+                    <SegmentTrieNode>
+                    <CvPage>
+                      ...
+                        <motion.div className="grid items..." variants={undefined} initial={false} animate={undefined}>
+                          <div className="grid items..." style={{}} ref={function useMotionRef.useCallback}>
+                            <motion.div initial={{opacity:1,y:0}} animate={{opacity:1,y:0}} className="mx-auto w-...">
+                              <div
+                                className="mx-auto w-44 sm:w-52 md:mx-0 md:w-full"
+                                style={{
++                                 opacity: 1
+-                                 opacity: "0"
++                                 transform: "none"
+-                                 transform: "translateY(18px)"
+                                }}
+                                ref={function useMotionRef.useCallback}
+                              >
+                            <div className="min-w-0 lg...">
+                              <motion.h1 initial={{opacity:1,y:0}} animate={{opacity:1,y:0}} className="font-displ...">
+                                <h1
+                                  className="font-display text-[clamp(2.75rem,7vw,3.75rem)] font-semibold leading-[1.0..."
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(18px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
++                                 Verónica Plodzien
+                              <motion.div initial={{opacity:1,y:0}} animate={{opacity:1,y:0}} aria-hidden={true} ...>
+                                <div
+                                  aria-hidden={true}
+                                  className="mt-5 h-px w-16 bg-terracotta"
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(18px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                              <motion.p initial={{opacity:1,y:0}} animate={{opacity:1,y:0}} className="mt-5 max-w...">
+                                <p
+                                  className="mt-5 max-w-[60ch] text-lg leading-relaxed"
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(18px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
++                                 Soy una persona comprometida, responsable y siempre puntual, con gusto por el trabajo...
+                              <motion.div initial={{opacity:1,y:0}} animate={{opacity:1,y:0}} className="mt-8 flex ...">
+                                <div
+                                  className="mt-8 flex flex-col gap-2.5 sm:gap-3"
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(18px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                      <div className="mx-auto w-...">
+                        <ExperienceSection items={[...]}>
+                          <section aria-labelledby="seccion-ex..." className="mt-16 sm:m...">
+                            <Reveal>
+                              <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className={undefined}
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                            <div ref={{current:null}} className="relative mt-8">
+                              <div>
+                              <div
+                                aria-hidden={true}
++                               className="absolute bottom-2 left-[7px] top-1 w-px bg-navy"
+-                               className="absolute bottom-2 left-[7px] top-1 w-px origin-top bg-navy"
+-                               style={{transform:"scaleY(0)"}}
+                              >
+                              <ol className="space-y-10...">
+                                <li className="relative pl-8">
+                                  <span>
+                                  <Reveal delay={0}>
+                                    <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                      <div
+                                        className={undefined}
+                                        style={{
++                                         opacity: 1
+-                                         opacity: "0"
++                                         transform: "none"
+-                                         transform: "translateY(16px)"
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                <li className="relative pl-8">
+                                  <span>
+                                  <Reveal delay={0.06}>
+                                    <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                      <div
+                                        className={undefined}
+                                        style={{
++                                         opacity: 1
+-                                         opacity: "0"
++                                         transform: "none"
+-                                         transform: "translateY(16px)"
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                <li className="relative pl-8">
+                                  <span>
+                                  <Reveal delay={0.12}>
+                                    <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                      <div
+                                        className={undefined}
+                                        style={{
++                                         opacity: 1
+-                                         opacity: "0"
++                                         transform: "none"
+-                                         transform: "translateY(16px)"
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                <li className="relative pl-8">
+                                  <span>
+                                  <Reveal delay={0.18}>
+                                    <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                      <div
+                                        className={undefined}
+                                        style={{
++                                         opacity: 1
+-                                         opacity: "0"
++                                         transform: "none"
+-                                         transform: "translateY(16px)"
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                        <EducationSection>
+                          <section aria-labelledby="seccion-ed..." className="mt-16 sm:m...">
+                            <Reveal>
+                              <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className={undefined}
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                            <Reveal delay={0.08} className="mt-8">
+                              <motion.div className="mt-8" initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className="mt-8"
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                        <SkillsSection>
+                          <section aria-labelledby="seccion-in..." className="mt-16 sm:m...">
+                            <Reveal>
+                              <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className={undefined}
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                            <Reveal delay={0.08} className="mt-8">
+                              <motion.div className="mt-8" initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className="mt-8"
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                        <ContactSection>
+                          <section aria-labelledby="seccion-co..." className="mt-16 pb-2...">
+                            <Reveal>
+                              <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className={undefined}
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                            <Reveal delay={0.08}>
+                              <motion.div className={undefined} initial={{opacity:1,y:0}} animate={{opacity:1,y:0}}>
+                                <div
+                                  className={undefined}
+                                  style={{
++                                   opacity: 1
+-                                   opacity: "0"
++                                   transform: "none"
+-                                   transform: "translateY(16px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                  ...
+                ...
+
+saved C:\Users\Jony\Desktop\curriculum-vero-nuevo\.impeccable\review\app-page-mobile.png
+
+done.

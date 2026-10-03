@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { copy } from "@/lib/copy";
+import { DownloadCvButton } from "@/components/download-button";
 
 interface HeroProps {
   name: string;
@@ -51,7 +52,7 @@ export function Hero(props: HeroProps) {
   return (
     <section className="pt-10 sm:pt-16 md:pt-20">
       <motion.div
-        className="grid items-start gap-8 md:grid-cols-[17rem_1fr] md:gap-12 lg:grid-cols-[18rem_1fr] lg:gap-16"
+        className="grid items-center gap-8 md:grid-cols-[17rem_1fr] md:gap-12 lg:grid-cols-[18rem_1fr] lg:gap-16"
         variants={reduce ? undefined : parent}
         initial={reduce ? false : "hidden"}
         animate={reduce ? undefined : "show"}
@@ -94,11 +95,20 @@ export function Hero(props: HeroProps) {
             {props.profile}
           </motion.p>
 
-          <motion.div {...entrance} className="mt-8">
+          <motion.div
+            {...entrance}
+            className="mt-8 flex flex-col gap-2.5 sm:gap-3"
+          >
+            {/* Row 1: the primary action — the PDF download */}
+            <DownloadCvButton className="w-full sm:w-auto" />
+            {/* Row 2: the three contact actions, one row, equal size and gap.
+                md:px-4 (lg:px-5 restores) keeps "Escribir un mail" on one
+                line inside the 768px two-column hero without touching the
+                shared height or the gap between buttons. */}
             <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-nowrap sm:items-center sm:gap-3">
               <a
                 href={`tel:${props.phoneLink}`}
-                className="inline-flex items-center rounded-full bg-navy px-5 py-2.5 font-medium text-paper transition-colors duration-200 hover:bg-navy-deep"
+                className="inline-flex w-full items-center justify-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5 md:px-4 lg:px-5 sm:w-auto"
               >
                 {copy.hero.call}
               </a>
@@ -106,23 +116,17 @@ export function Hero(props: HeroProps) {
                 href={`https://wa.me/${props.whatsapp}`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5"
+                className="inline-flex w-full items-center justify-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5 md:px-4 lg:px-5 sm:w-auto"
               >
                 {copy.hero.whatsapp}
               </a>
               <a
                 href={`mailto:${props.email}`}
-                className="inline-flex items-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5"
+                className="inline-flex w-full items-center justify-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5 md:px-4 lg:px-5 sm:w-auto"
               >
                 {copy.hero.email}
               </a>
             </div>
-            <a
-              href="/cv.pdf"
-              className="mt-2.5 inline-flex items-center rounded-full border border-navy/25 bg-navy/10 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:bg-navy/15 sm:mt-3"
-            >
-              {copy.hero.downloadPdf}
-            </a>
           </motion.div>
         </div>
       </motion.div>

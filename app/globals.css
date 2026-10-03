@@ -57,8 +57,14 @@ body {
   background-color: color-mix(in srgb, var(--terracotta) 24%, transparent);
 }
 
+/*
+ * Keyboard focus: a visible ring in the design's accent (terracotta on
+ * cream, ~4.9:1 — above the 3:1 non-text contrast minimum). The offset
+ * keeps the ring fully on the page ground, so it stays visible even
+ * around the navy-filled primary buttons.
+ */
 :focus-visible {
-  outline: 2px solid var(--navy);
+  outline: 2px solid var(--terracotta);
   outline-offset: 3px;
 }
 

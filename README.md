@@ -18,6 +18,7 @@ pnpm dev        # desarrollo
 pnpm build      # build de producción
 pnpm start      # servidor de producción
 pnpm lint       # ESLint
+pnpm generate:pdf  # regenera public/cv.pdf (build + Playwright/Chromium)
 ```
 
 ## Contenido y años dinámicos
@@ -38,9 +39,21 @@ rioplatense neutro. Los componentes no hardcodean español.
 
 ## PDF
 
-`/cv.pdf` es por ahora un placeholder (HTTP 501). Cuando se implemente,
-se servirá desde esa misma URL y se descargará como
-`Veronica-Plodzien-CV.pdf`.
+`/cv.pdf` sirve el PDF real del currículum (A4, texto seleccionable,
+máximo 2 páginas): el archivo vive en el repo como `public/cv.pdf` y el
+botón “Descargar CV (PDF)” lo guarda como `Veronica-Plodzien-CV.pdf`
+(atributo `download`, sin tildes).
+
+El PDF se genera desde la página de impresión `/pdf` (noindex):
+`pnpm generate:pdf` hace un build de producción e imprime la página con
+Playwright/Chromium. Ejecutarlo cada vez que se edita `data/cv.json`
+y commitear el `public/cv.pdf` resultante.
+
+En GitHub, el workflow **“Regenerate PDF”** (`.github/workflows/`)
+lleva a cabo lo mismo el día 1 de cada mes (06:00) y bajo demanda
+(Actions → Run workflow), y commit + push solo si el PDF cambió. Requiere
+permiso `contents: write` (el comentario al inicio del archivo explica
+por qué y cómo).
 
 ## Variables de entorno
 

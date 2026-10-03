@@ -9,6 +9,8 @@ export const copy = {
   page: {
     titleSuffix: "Currículum vitae",
     title: (name: string) => `${name} · ${copy.page.titleSuffix}`,
+    // Title for the print view (/pdf). Same pattern, marked as the PDF version.
+    titlePdf: (name: string) => `${name} · ${copy.page.titleSuffix} (PDF)`,
     description: (name: string) => `Currículum vitae de ${name}`,
     photoAlt: (name: string) => `Fotografía de perfil de ${name}`,
   },
@@ -36,8 +38,10 @@ export const copy = {
     emailLabel: "Email",
     locationLabel: "Ubicación",
   },
-  pdfPlaceholder:
-    "El PDF de este currículum todavía está en construcción. Volvé en unos días.",
-  // Label of the single back-link on the /cv.pdf placeholder page (501).
-  pdfPlaceholderBack: "Volver al currículum",
+  pdf: {
+    // Downloaded file name — Spanish, no tildes (language convention).
+    // Used as the `download` attribute of the primary button, so the
+    // browser saves the file under this exact name.
+    fileName: "Veronica-Plodzien-CV.pdf",
+  },
 } as const;

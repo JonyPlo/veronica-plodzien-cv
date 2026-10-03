@@ -1,0 +1,71 @@
+---
+# Regenerates the site's PDF (public/cv.pdf).
+#
+# Triggers
+#   - schedule: on the 1st of every month — a safety net in case a year marker
+#     in data/cv.json rolls over while nobody is editing the site
+#     ({career_years}, {years_in_role} are computed from the current date).
+#   - workflow_dispatch: on demand, from Actions → Run workflow.
+#
+# What it does
+#   1. Builds the production app (never the dev server — the PDF must look
+#      exactly like production).
+#   2. Prints /pdf to A4 with Playwright/Chromium (scripts/generate-pdf.ts).
+#   3. Commits + pushes public/cv.pdf to main only when the bytes changed.
+#
+# Repository permissions required
+#   The GITHUB_TOKEN is read-only by default; the workflow below requests
+#   `contents: write` for itself (enough for the commit + push). If the
+#   repository's Settings → Actions → Workflow permissions → Token
+#   permissions is set to "Read only", that override wins and the push is
+#   rejected — set Contents there to "Read and write" (or leave it at the
+#   default "Token has read and write access").
+#
+# Local equivalent: pnpm generate:pdf (then commit the changed public/cv.pdf).
+name: Regenerate PDF
+
+"on":
+  schedule:
+    - cron: "0 6 1 1 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      # Pinned to the v4 tag objects (2026-10-03); re-verify before bumps.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
+
+      # pnpm/action-setup reads the packageManager field (pnpm@11.23.0).
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa  # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium for Playwright
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Generate public/cv.pdf
+        run: pnpm generate:pdf
+
+      - name: Commit the PDF if it changed
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- public/cv.pdf; then
+            echo "PDF unchanged — nothing to commit."
+          else
+            git add public/cv.pdf
+            git commit -m "chore: regenerate cv.pdf"
+            git push
+          fi

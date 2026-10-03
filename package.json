@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "generate:pdf": "node scripts/generate-pdf.ts",
     "lint": "eslint"
   },
   "dependencies": {
@@ -21,6 +22,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
+    "mupdf": "^1.28.1",
+    "playwright": "1.63.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

@@ -58,20 +58,18 @@ typography:
     fontWeight: 500
     lineHeight: 1.43
     letterSpacing: "0.025em"
-  standalone-serif:
-    # Only for the /cv.pdf placeholder page: it lives outside the app shell,
-    # where next/font cannot reach it, so it uses a system serif (same
-    # exemption as the favicon; see "Standalone Surfaces Rule" below).
-    fontFamily: "Georgia, 'Times New Roman', serif"
-    fontSize: "2rem"
+  pdf-display:
+    # /pdf only (the A4 PDF): the name, 24pt Fraunces navy.
+    fontFamily: "Fraunces, 'Times New Roman', serif"
+    fontSize: "24pt"
     fontWeight: 600
-    lineHeight: 1.15
-  standalone-sans:
-    # System sans for the /cv.pdf placeholder page body and link.
-    fontFamily: "-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
-    fontSize: "1.0625rem"
+    lineHeight: 1.1
+  pdf-body:
+    # /pdf only: 10.5pt DM Sans, 1.45 leading (periods/levels 9pt tabular).
+    fontFamily: "DM Sans, 'Arial', sans-serif"
+    fontSize: "10.5pt"
     fontWeight: 400
-    lineHeight: 1.65
+    lineHeight: 1.45
 rounded:
   arch-top: "999px"
   arch-bottom: "16px"
@@ -151,6 +149,7 @@ The color discipline is the point: one strong color (deep navy) carries the iden
 - Terracotta strictly at decorative scale: 1px hairlines, the 14px "now" dot, low-alpha underline and selection tints, and the keyboard focus ring.
 - Flat by default: exactly one soft diffuse shadow and one 1px ring, both under the arch.
 - One authored motion (the self-drawing spine); all other motion is once-only fade-up.
+- A white-sheeted A4 PDF twin (`/pdf` → `public/cv.pdf`) reuses the same voice on the real self-hosted fonts: same section titles, same order, print discipline.
 
 ## Colors
 
@@ -170,7 +169,7 @@ A warm neutral ground, one strong hue, one decorative accent — the palette of 
 - **Cream Paper** (#faf7f2): the ground — the page background, and the fill of the timeline's "past" dots.
 - **Ink** (#1b1e26): primary text (body and entry headings) and the source for every hairline at low alpha: list dividers at 10%, the timeline's quiet guide at 15%, link underlines at 25%, the arch ring at 10%.
 - **Ink Soft** (#525b6b): secondary text — periods, descriptions, levels, and the small mobile contact labels (6.4:1 on cream, well above AA).
-- *Declared but dormant:* `--paper-deep` (#f1ebe1) is defined in the shared token file (the token file is the single source of truth for the web and its future PDF twin) but no element of the shipped web build references it.
+- *PDF screen ground:* `--paper-deep` (#f1ebe1) is the ground under the white sheet of `/pdf` when viewed in a browser (in print the sheet dissolves and `@page` owns the box).
 
 ### Named Rules
 
@@ -201,7 +200,7 @@ A warm neutral ground, one strong hue, one decorative accent — the palette of 
 
 **The Tabular Periods Rule.** Every period and date is set with tabular figures and +0.025em tracking, so the years of the timeline align vertically like a typeset table.
 
-**The Standalone Surfaces Rule.** Two surfaces live outside the app shell, where `next/font` cannot reach them: the favicon (`icon.svg`) and the `/cv.pdf` 501 placeholder page (a standalone HTML document). They use the system stacks declared in the token block — `standalone-serif` (Georgia/Times New Roman) for headings and `standalone-sans` (the platform UI stack) for text — instead of Fraunces/DM Sans. That is the only sanctioned use of any other font; everything inside the app shell follows the Two Voices Rule. The `/cv.pdf` page mirrors the design tokens as inline CSS (paper, inks, navy, terracotta), is marked `noindex`, and is deliberately minimal: one heading, the approved placeholder line, and a single back-link.
+**The Standalone Surfaces Rule.** One surface lives outside the app shell, where `next/font` cannot reach it: the favicon (`icon.svg`) — the serif “VP” monogram uses a Georgia/Times New Roman system stack inside the SVG. That is the only sanctioned use of any other font; everything inside the app shell follows the Two Voices Rule. (Round 11 removed the former second standalone surface, the `/cv.pdf` 501 placeholder page: the PDF is now generated from the in-shell `/pdf` page, so it uses the real self-hosted Fraunces/DM Sans.)
 
 ## Layout
 
@@ -261,6 +260,17 @@ The hero enters once on load: opacity and 18px rise over 600ms, ease `cubic-bezi
 
 **The no-JS floor.** The SSR HTML ships the hidden initial styles inline (`opacity:0` on every revealed element, `scaleY(0)` on the spine), so a visitor without JavaScript — or a no-JS print — would otherwise see a blank page. A `<noscript>` style at the top of the body (active only when scripting is disabled, inert for JS users) forces every animation-hidden element into its final visible state. JS users are unaffected: the animations arm at mount exactly as before.
 
+## The PDF Surface (`/pdf` → `public/cv.pdf`)
+
+The downloadable CV is a real A4 PDF — selectable text, not an image — committed to the repo as `public/cv.pdf`, generated from the in-shell page `/pdf` (noindex + `Disallow: /pdf`), and served at `/cv.pdf`; the download button saves it as `Veronica-Plodzien-CV.pdf`. Because the page lives inside the app shell, the PDF carries the real self-hosted Fraunces/DM Sans — the 501-era system-font exemption died with the 501 page.
+
+- **White sheet only** (explicit owner decision): no background color on the sheet or on any block, so it prints clean on plain paper. In print, the on-screen frame (border, shadow, padding, `--paper-deep` ground) is dissolved and `@page { size: A4; margin: 15mm }` owns the box (Playwright `preferCSSPageSize`); on screen the white sheet floats over `--paper-deep` the way the web page floats over cream.
+- **Same voice, print scale** (all explicit in pt, since Tailwind's preflight removed the defaults): name 24pt Fraunces navy; section titles 14pt; entry titles 11.5pt; body 10.5pt DM Sans at 1.45; periods/levels 9pt tabular, +0.025em. The tokens still drive the colors: ink/navy text, terracotta marks, `--ink` at 10% for dividers.
+- **Header**: small arch portrait (84px) left of the name; a flat contact line — phone as visible text (`+54 381 501-7189`), email, “city, province, country”, separated by “·”; the profile directly below. Then Experiencia laboral → Educación → Informática — the same titles, order, and approved texts as the web.
+- **The only terracotta in the PDF**: the 32px × 1px hairline above each section title (and under the name) and the 7px dot marking the current position. No buttons, no icons, no visible link styling anywhere.
+- **Fit and page breaks**: 1–2 pages; entries are `break-inside: avoid`; each hairline + heading is one unit (`break-inside: avoid` + `break-after: avoid`) so a hairline can never be stranded at the bottom of a page.
+- **Regeneration**: `pnpm generate:pdf` (production build + Playwright/Chromium) or the monthly “Regenerate PDF” GitHub Actions workflow — see NOTES.md → Maintenance.
+
 ## Do's and Don'ts
 
 ### Do:
@@ -273,6 +283,7 @@ The hero enters once on load: opacity and 18px rise over 600ms, ease `cubic-bezi
 - **Do** divide list rows with 1px hairlines at 10% ink, never on the first row.
 - **Do** honor `prefers-reduced-motion` as a hard floor: reveals resolve to a static visible state, the spine is pre-drawn, smooth scrolling is off — content is never hidden by motion.
 - **Do** keep terracotta at the scale of marks: 1px hairlines, 14px dots, tints at 24% alpha or below.
+- **Do** keep the PDF a white sheet: no background on the sheet or any block, and its terracotta only as hairline and current-position dot.
 
 ### Don't:
 
@@ -282,3 +293,4 @@ The hero enters once on load: opacity and 18px rise over 600ms, ease `cubic-bezi
 - **Don't** introduce a second accent color, gradients, or decorative icon or glyph systems — the page carries no icon system; the single functional glyph (the download, on the PDF button) is the owner-requested exception.
 - **Don't** set small-caps or uppercase eyebrow text above section headings; the hairline is the marker.
 - **Don't** set the name anywhere but the single `h1`, or set Fraunces on any text that is not the name, a section title, or an entry heading.
+- **Don't** put buttons, icons, or visible link styling in the PDF; its contact values are flat visible text, and its section titles and order must stay identical to the web's.

@@ -1,0 +1,290 @@
+/* ---------------------------------------------------------------------------
+ * Print view (/pdf) — the A4 version of the CV.
+ *
+ * Deliberately sober: white sheet, no background fills and no shadows inside
+ * the page, hairlines only. Design tokens from app/globals.css are reused
+ * (colors and font roles); the web-specific motion (spine, reveals) has no
+ * print equivalent and is dropped on purpose.
+ *
+ * Two contexts:
+ *   screen — a white "sheet" (210 × 297 mm, 15 mm padding) floating on the
+ *            paper-deep ground with a hairline ring: a document preview.
+ *   print  — the sheet dissolves and the @page rule (A4 + 15 mm margins)
+ *            becomes the single source of truth for the page box; the
+ *            generation script passes preferCSSPageSize so the CSS, not
+ *            printer defaults, decides.
+ * ------------------------------------------------------------------------- */
+
+@page {
+  size: A4;
+  margin: 15mm;
+}
+
+/* Screen only: the surrounding ground. */
+.pdf-stage {
+  min-height: 100vh;
+  background-color: var(--paper-deep);
+  padding: 28px 12px 48px;
+}
+
+.pdf-sheet {
+  width: 210mm;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 15mm;
+  background-color: #fff;
+  color: var(--ink);
+  font-family: var(--font-dm-sans);
+  font-size: 10.5pt;
+  line-height: 1.5;
+  border: 1px solid rgba(27, 30, 38, 0.1);
+  box-shadow: 0 24px 60px -34px rgba(20, 38, 63, 0.5);
+}
+
+/* ---------------------------------------------------------------------------
+ * Header: photo (left) + name/mark/contact (right), profile below.
+ * Kept whole on the first page.
+ * ------------------------------------------------------------------------- */
+
+.pdf-header {
+  break-inside: avoid;
+}
+
+.pdf-header-top {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.pdf-photo {
+  flex: none;
+  width: 84px;
+  overflow: hidden;
+  /* The arch — the page's one frame. Ring only: the soft web shadow would
+     print as a gray smudge, so it stays on the screen view. */
+  border: 1px solid rgba(27, 30, 38, 0.1);
+  border-radius: 999px 999px 10px 10px;
+}
+
+.pdf-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pdf-id {
+  min-width: 0;
+}
+
+.pdf-id h1 {
+  margin: 0;
+  font-family: var(--font-fraunces);
+  font-size: 24pt;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+
+/* The 32 px terracotta hairline — the section marker, used under the name
+   and above each section heading, exactly as on the web. */
+.pdf-mark {
+  width: 32px;
+  height: 1px;
+  background-color: var(--terracotta);
+}
+
+.pdf-id .pdf-mark {
+  margin: 10px 0 8px;
+}
+
+/* Flat contact line: the values are the text. Links are unstyled on
+   purpose (no underline, no button) so the line reads as plain text on
+   paper and filter systems can still detect the values. */
+.pdf-contact {
+  margin: 0;
+  font-style: normal;
+  font-size: 9.5pt;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.pdf-contact a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.pdf-sep {
+  margin: 0 6px;
+}
+
+.pdf-profile {
+  margin: 16px 0 0;
+  break-inside: avoid;
+}
+
+/* ---------------------------------------------------------------------------
+ * Sections: same order and titles as the web (Experiencia laboral,
+ * Educación, Informática). Each heading is preceded by the terracotta
+ * hairline; headings never end up alone at the bottom of a page.
+ * ------------------------------------------------------------------------- */
+
+.pdf-section {
+  margin-top: 24px;
+}
+
+/* Hairline + heading are one unit: never split across a page break, and
+   never left alone at the bottom of a page (they carry the first entry
+   with them instead). */
+.pdf-section-head {
+  break-inside: avoid;
+  break-after: avoid;
+}
+
+.pdf-section-head .pdf-mark {
+  margin: 0 0 8px;
+}
+
+.pdf-section-head h2 {
+  margin: 0 0 12px;
+  font-family: var(--font-fraunces);
+  font-size: 14pt;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--navy);
+  break-after: avoid;
+}
+
+/* Shared entry anatomy: small tabular period, serif entry title, navy
+   organization, secondary description. */
+.pdf-period {
+  margin: 0;
+  font-size: 9pt;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+}
+
+.pdf-xp-item h3,
+.pdf-edu-item h3 {
+  margin: 2px 0 0;
+  font-family: var(--font-fraunces);
+  font-size: 11.5pt;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.pdf-company,
+.pdf-institution {
+  margin: 2px 0 0;
+  font-size: 10.5pt;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.pdf-desc {
+  margin: 5px 0 0;
+  color: var(--ink-soft);
+}
+
+/* Experience entries never split across pages; the current job carries the
+   small terracotta "now" dot (a detail-scale accent, as on the web). */
+.pdf-xp-item {
+  break-inside: avoid;
+}
+
+.pdf-xp-item + .pdf-xp-item {
+  margin-top: 14px;
+}
+
+.pdf-xp-item.is-current .pdf-period {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.pdf-xp-item.is-current .pdf-period::before {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--terracotta);
+}
+
+/* Education: rows on 10%-ink hairlines (never on the first row), like the
+   web. Rows keep together across pages. */
+.pdf-edu-item {
+  padding: 9px 0;
+  break-inside: avoid;
+}
+
+.pdf-edu-item + .pdf-edu-item {
+  border-top: 1px solid rgba(27, 30, 38, 0.1);
+}
+
+.pdf-level {
+  margin: 2px 0 0;
+  font-size: 9.5pt;
+  color: var(--ink-soft);
+}
+
+/* Skills: name/level baseline rows, 10%-ink dividers and a closing line
+   under the last row (the web's round-10b pattern). */
+.pdf-skill {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 0;
+  break-inside: avoid;
+}
+
+.pdf-skill + .pdf-skill {
+  border-top: 1px solid rgba(27, 30, 38, 0.1);
+}
+
+.pdf-skill:last-child {
+  border-bottom: 1px solid rgba(27, 30, 38, 0.1);
+}
+
+.pdf-skill-name {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.pdf-skill-level {
+  font-size: 9.5pt;
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------------------------
+ * Print: the sheet dissolves; @page owns the page box. The body background
+ * is pinned to white (printBackground is on in the generation script) so
+ * nothing tinted reaches the paper.
+ * ------------------------------------------------------------------------- */
+
+@media print {
+  body {
+    background-color: #fff;
+  }
+
+  .pdf-stage {
+    min-height: 0;
+    padding: 0;
+    background: none;
+  }
+
+  .pdf-sheet {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    background: none;
+  }
+}

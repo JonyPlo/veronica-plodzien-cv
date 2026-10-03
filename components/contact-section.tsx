@@ -34,7 +34,7 @@ export function ContactSection({
       <Reveal delay={0.08}>
         <address className="mt-8 space-y-4 not-italic">
           <p className="flex flex-wrap items-baseline gap-x-3">
-            <span className="w-24 shrink-0 text-sm text-ink-soft">
+            <span className="w-24 shrink-0 text-base text-ink-soft md:text-[0.9375rem]">
               {copy.contact.phoneLabel}
             </span>
             <a href={`tel:${phoneLink}`} className={linkClasses}>
@@ -42,7 +42,7 @@ export function ContactSection({
             </a>
           </p>
           <p className="flex flex-wrap items-baseline gap-x-3">
-            <span className="w-24 shrink-0 text-sm text-ink-soft">
+            <span className="w-24 shrink-0 text-base text-ink-soft md:text-[0.9375rem]">
               {copy.contact.whatsappLabel}
             </span>
             <a
@@ -55,7 +55,7 @@ export function ContactSection({
             </a>
           </p>
           <p className="flex flex-wrap items-baseline gap-x-3">
-            <span className="w-24 shrink-0 text-sm text-ink-soft">
+            <span className="w-24 shrink-0 text-base text-ink-soft md:text-[0.9375rem]">
               {copy.contact.emailLabel}
             </span>
             <a href={`mailto:${email}`} className={linkClasses}>
@@ -63,7 +63,7 @@ export function ContactSection({
             </a>
           </p>
           <p className="flex flex-wrap items-baseline gap-x-3">
-            <span className="w-24 shrink-0 text-sm text-ink-soft">
+            <span className="w-24 shrink-0 text-base text-ink-soft md:text-[0.9375rem]">
               {copy.contact.locationLabel}
             </span>
             <span>{location}</span>

@@ -51,7 +51,7 @@ export function Hero(props: HeroProps) {
   return (
     <section className="pt-10 sm:pt-16 md:pt-20">
       <motion.div
-        className="grid items-center gap-8 md:grid-cols-2 md:gap-12"
+        className="grid items-start gap-8 md:grid-cols-[17rem_1fr] md:gap-12 lg:grid-cols-[18rem_1fr] lg:gap-16"
         variants={reduce ? undefined : parent}
         initial={reduce ? false : "hidden"}
         animate={reduce ? undefined : "show"}
@@ -59,7 +59,7 @@ export function Hero(props: HeroProps) {
         {/* Photo: soft arch, the quiet center of the page */}
         <motion.div
           {...entrance}
-          className="mx-auto w-44 sm:w-52 md:mx-0 md:w-full md:max-w-[17rem]"
+          className="mx-auto w-44 sm:w-52 md:mx-0 md:w-full"
         >
           <div className="overflow-hidden rounded-b-2xl rounded-t-[999px] shadow-[0_18px_40px_-22px_rgba(20,38,63,0.45)] ring-1 ring-ink/10">
             <Image
@@ -73,7 +73,7 @@ export function Hero(props: HeroProps) {
         </motion.div>
 
         {/* Name, mark, profile, actions */}
-        <div>
+        <div className="min-w-0 lg:max-w-[600px]">
           <motion.h1
             {...entrance}
             className="font-display text-[clamp(2.75rem,7vw,3.75rem)] font-semibold leading-[1.04] tracking-[-0.015em] text-navy"
@@ -89,38 +89,37 @@ export function Hero(props: HeroProps) {
 
           <motion.p
             {...entrance}
-            className="mt-5 max-w-[65ch] text-lg leading-relaxed"
+            className="mt-5 max-w-[60ch] text-lg leading-relaxed"
           >
             {props.profile}
           </motion.p>
 
-          <motion.div
-            {...entrance}
-            className="mt-8 flex flex-wrap gap-2.5 sm:gap-3"
-          >
-            <a
-              href={`tel:${props.phoneLink}`}
-              className="inline-flex items-center rounded-full bg-navy px-5 py-2.5 font-medium text-paper transition-colors duration-200 hover:bg-navy-deep"
-            >
-              {copy.hero.call}
-            </a>
-            <a
-              href={`https://wa.me/${props.whatsapp}`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5"
-            >
-              {copy.hero.whatsapp}
-            </a>
-            <a
-              href={`mailto:${props.email}`}
-              className="inline-flex items-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5"
-            >
-              {copy.hero.email}
-            </a>
+          <motion.div {...entrance} className="mt-8">
+            <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-nowrap sm:items-center sm:gap-3">
+              <a
+                href={`tel:${props.phoneLink}`}
+                className="inline-flex items-center rounded-full bg-navy px-5 py-2.5 font-medium text-paper transition-colors duration-200 hover:bg-navy-deep"
+              >
+                {copy.hero.call}
+              </a>
+              <a
+                href={`https://wa.me/${props.whatsapp}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5"
+              >
+                {copy.hero.whatsapp}
+              </a>
+              <a
+                href={`mailto:${props.email}`}
+                className="inline-flex items-center rounded-full border border-navy/30 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:border-navy hover:bg-navy/5"
+              >
+                {copy.hero.email}
+              </a>
+            </div>
             <a
               href="/cv.pdf"
-              className="inline-flex items-center rounded-full px-3 py-2.5 font-medium text-ink-soft transition-colors duration-200 hover:text-navy"
+              className="mt-2.5 inline-flex items-center rounded-full border border-navy/25 bg-navy/10 px-5 py-2.5 font-medium text-navy transition-colors duration-200 hover:bg-navy/15 sm:mt-3"
             >
               {copy.hero.downloadPdf}
             </a>

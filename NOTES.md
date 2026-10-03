@@ -4,6 +4,20 @@ Source repo: `C:\Users\Jony\Desktop\Curriculum-Vero` (CRA). Target: `C:\Users\Jo
 Rounds 3–5: corrections and adjustments approved by the CV owner.
 From round 5 on, this file is written in English; the visible CV text values (in `data/cv.json`) stay in Spanish, unmodified.
 
+## Round 7 changes — desktop layout pass (widths, hero, type sizes, dev issue)
+
+Requested by the owner; **layout-only** — no palette, type-family, content, or animation changes.
+
+1. **Column widths** (`app/page.tsx`): the single 672px column is now two wrappers — the hero is full-width on mobile and capped at **1080px** centered (`lg:max-w-[67.5rem]`); the reading sections (Experiencia, Educación, Informática, Contacto) share a **720px** column (`max-w-[45rem]`). Mobile keeps the original 20px gutters.
+2. **Hero, two columns on md+** (`components/hero.tsx`): grid `md:grid-cols-[17rem_1fr] lg:grid-cols-[18rem_1fr]`. Tailwind v4 gotcha: the first attempt used commas (`[17rem,1fr]`), which produced the invalid CSS `grid-template-columns:17rem,1fr` — the browser ignored it and the page rendered single-column; caught by the screenshot pass and fixed with underscores. Photo left, slightly larger (272px md / 288px lg); name + hairline + profile + buttons in the right column (`min-w-0 lg:max-w-[600px]`), **top-aligned** (`items-start`) so the name starts at the photo's top line; at lg the right margin equals the 64px gap (balanced breathing room).
+3. **Buttons**: the three contact pills (Llamar / WhatsApp / Escribir un mail) always sit on one row from `sm:` up (stack only on phones); **Descargar CV (PDF) is now a real secondary button** — soft navy fill (`bg-navy/10`, 25%-opacity border, text navy, no icon to keep the text-only-pill consistency) — on its own line directly below.
+4. **Profile measure** 65ch → **60ch** (owner request).
+5. **Type sizes, rem-based** (16px floor for reading text on mobile; desktop bumps via `md:`): descriptions `1rem → md:1.125rem` (18px, line-height 1.65); company/institution `md:1.0625rem` (17px); periods, levels and secondary labels `1rem → md:0.9375rem` (16px phone / 15px desktop). H3 position/degree headings unchanged (20/24px).
+6. **Contrast**: measured in the browser (Playwright, WCAG relative-luminance on rendered nodes): gray `#525b6b` on cream `#faf7f2` = **6.41:1** — passes 4.5:1 even at 15px, so no color was darkened. All four distinct color/background pairs on the page pass.
+7. **The dev “1 issue”**: Next 16 printed `⚠ metadataBase property in metadata export is not set … using "http://localhost:3000"` — `NEXT_PUBLIC_SITE_URL` is unset (site not deployed yet), so `metadataBase` was `undefined` and Next guessed. Fix: `resolveMetadataBase()` now always returns a URL (the env var when set, otherwise the local origin; malformed → warning + local origin). Same URLs as before, zero warnings in dev and `pnpm build`; README documents that the real domain goes in `.env.local` at deploy time.
+8. **Verified**: clean production build; Playwright reduced-motion screenshots 1440×2930 and 390×3501; zero console/page errors.
+9. `.impeccable/dev.log` added to `.gitignore` (alongside `server.log`).
+
 ## Round 6 changes — new visual build (the web app)
 
 The content work (rounds 1–5) closed this file; round 6 documents the build of the new single-page CV on top of the finalized `data/cv.json`.

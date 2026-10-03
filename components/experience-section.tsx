@@ -82,14 +82,16 @@ export function ExperienceSection({ items }: ExperienceSectionProps) {
                 }
               />
               <Reveal delay={index * 0.06}>
-                <p className="text-sm font-medium tracking-wide text-ink-soft tabular-nums">
+                <p className="text-base font-medium tracking-wide text-ink-soft tabular-nums md:text-[0.9375rem]">
                   {item.period}
                 </p>
                 <h3 className="mt-1.5 font-display text-xl font-semibold text-ink sm:text-2xl">
                   {item.position}
                 </h3>
-                <p className="mt-1 font-medium text-navy">{item.company}</p>
-                <p className="mt-3 max-w-[62ch] leading-relaxed text-ink-soft">
+                <p className="mt-1 font-medium text-navy md:text-[1.0625rem]">
+                  {item.company}
+                </p>
+                <p className="mt-3 max-w-[62ch] text-base leading-relaxed text-ink-soft md:text-[1.125rem] md:leading-[1.65]">
                   {item.description}
                 </p>
               </Reveal>

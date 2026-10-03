@@ -41,35 +41,41 @@ export default function CvPage() {
   ].join(", ");
 
   return (
-    <main className="mx-auto w-full max-w-2xl px-5 sm:px-8">
-      <Hero
-        name={cv.name}
-        photoSrc={assetUrl(cv.photo.web)}
-        photoAlt={copy.page.photoAlt(cv.name)}
-        profile={profile}
-        phone={cv.contact.phone}
-        phoneLink={cv.contact.phoneLink}
-        whatsapp={cv.contact.whatsapp}
-        email={cv.contact.email}
-      />
+    <>
+      {/* Hero: full width on mobile, ~1080px centered on large screens. */}
+      <div className="mx-auto w-full px-5 sm:px-8 lg:max-w-[67.5rem]">
+        <Hero
+          name={cv.name}
+          photoSrc={assetUrl(cv.photo.web)}
+          photoAlt={copy.page.photoAlt(cv.name)}
+          profile={profile}
+          phone={cv.contact.phone}
+          phoneLink={cv.contact.phoneLink}
+          whatsapp={cv.contact.whatsapp}
+          email={cv.contact.email}
+        />
+      </div>
 
-      <ExperienceSection items={experienceItems} />
+      {/* Reading sections: ~720px column. */}
+      <div className="mx-auto w-full max-w-[45rem] px-5 sm:px-8">
+        <ExperienceSection items={experienceItems} />
 
-      {educationItems.length > 0 && (
-        <EducationSection items={educationItems} />
-      )}
+        {educationItems.length > 0 && (
+          <EducationSection items={educationItems} />
+        )}
 
-      {cv.computerSkills.length > 0 && (
-        <SkillsSection items={cv.computerSkills} />
-      )}
+        {cv.computerSkills.length > 0 && (
+          <SkillsSection items={cv.computerSkills} />
+        )}
 
-      <ContactSection
-        phone={cv.contact.phone}
-        phoneLink={cv.contact.phoneLink}
-        whatsapp={cv.contact.whatsapp}
-        email={cv.contact.email}
-        location={location}
-      />
-    </main>
+        <ContactSection
+          phone={cv.contact.phone}
+          phoneLink={cv.contact.phoneLink}
+          whatsapp={cv.contact.whatsapp}
+          email={cv.contact.email}
+          location={location}
+        />
+      </div>
+    </>
   );
 }

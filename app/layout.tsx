@@ -19,20 +19,22 @@ const cv = loadCv();
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
 /**
- * The site URL comes from an env var, never hardcoded. An absent value is
- * normal (relative URLs); a malformed one gets a clear warning instead of
- * crashing the build.
+ * The site URL comes from an env var, never hardcoded. Until the site is
+ * deployed there is no domain, so local development uses the local origin
+ * (otherwise Next warns and guesses it anyway). Set NEXT_PUBLIC_SITE_URL in
+ * .env.local / at deploy time to emit correct absolute URLs in the
+ * og/twitter tags.
  */
-function resolveMetadataBase(url: string | undefined): URL | undefined {
-  if (!url) return undefined;
+function resolveMetadataBase(): URL {
+  if (!siteUrl) return new URL("http://localhost:3000");
   try {
-    return new URL(url);
+    return new URL(siteUrl);
   } catch {
     console.warn(
-      `[metadata] NEXT_PUBLIC_SITE_URL is not a valid URL ("${url}"); ` +
-        "falling back to relative URLs.",
+      `[metadata] NEXT_PUBLIC_SITE_URL is not a valid URL ("${siteUrl}"); ` +
+        "using the local origin instead.",
     );
-    return undefined;
+    return new URL("http://localhost:3000");
   }
 }
 
@@ -45,7 +47,7 @@ const ogImage = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: resolveMetadataBase(siteUrl),
+  metadataBase: resolveMetadataBase(),
   title: copy.page.title(cv.name),
   description: copy.page.description(cv.name),
   openGraph: {

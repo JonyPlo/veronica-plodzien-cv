@@ -33,7 +33,7 @@ export function SkillsSection({ items }: SkillsSectionProps) {
               }`}
             >
               <span className="font-medium">{item.name}</span>
-              <span className="shrink-0 text-sm text-ink-soft">
+              <span className="shrink-0 text-base text-ink-soft md:text-[0.9375rem]">
                 {item.level}
               </span>
             </li>

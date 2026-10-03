@@ -47,4 +47,6 @@ se servirá desde esa misma URL y se descargará como
 Copiar `.env.example` a `.env.local`:
 
 - `NEXT_PUBLIC_SITE_URL` — URL pública del sitio; alimenta la metadata
-  SEO / Open Graph.
+  SEO / Open Graph (og:image y twitter:image). Opcional en desarrollo local:
+  sin ella se usa `http://localhost:3000` como origen. **Setearla al
+  desplegar** para que los tags sociales apunten al dominio real.

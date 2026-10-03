@@ -32,14 +32,18 @@ export function EducationSection({ items }: EducationSectionProps) {
               key={item.degree}
               className={index > 0 ? "border-t border-ink/10 py-5 first:pt-0" : "py-5"}
             >
-              <p className="text-sm font-medium tracking-wide text-ink-soft tabular-nums">
+              <p className="text-base font-medium tracking-wide text-ink-soft tabular-nums md:text-[0.9375rem]">
                 {item.period}
               </p>
               <h3 className="mt-1.5 font-display text-xl font-semibold text-ink sm:text-2xl">
                 {item.degree}
               </h3>
-              <p className="mt-1 font-medium text-navy">{item.institution}</p>
-              <p className="mt-0.5 text-sm text-ink-soft">{item.level}</p>
+              <p className="mt-1 font-medium text-navy md:text-[1.0625rem]">
+                {item.institution}
+              </p>
+              <p className="mt-0.5 text-base text-ink-soft md:text-[0.9375rem]">
+                {item.level}
+              </p>
             </li>
           ))}
         </ul>

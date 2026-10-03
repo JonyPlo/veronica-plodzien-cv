@@ -111,37 +111,44 @@ export default function PdfPage() {
           </ol>
         </section>
 
-        <section className="pdf-section" aria-labelledby="pdf-educacion">
-          <div className="pdf-section-head">
-            <div className="pdf-mark" aria-hidden />
-            <h2 id="pdf-educacion">{copy.sections.education}</h2>
-          </div>
-          <ul>
-            {educationItems.map((item) => (
-              <li key={item.degree} className="pdf-edu-item">
-                <p className="pdf-period">{item.period}</p>
-                <h3>{item.degree}</h3>
-                <p className="pdf-institution">{item.institution}</p>
-                <p className="pdf-level">{item.level}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {/* Two-column bottom block: Educación (left, ~60%) and Informática
+            (right, ~40%) share the space below Experiencia so the CV fits
+            one A4 page. DOM order stays Experiencia → Educación →
+            Informática, which is also the PDF reading order (the grid lays
+            the left column out before the right one). */}
+        <div className="pdf-bottom">
+          <section className="pdf-section" aria-labelledby="pdf-educacion">
+            <div className="pdf-section-head">
+              <div className="pdf-mark" aria-hidden />
+              <h2 id="pdf-educacion">{copy.sections.education}</h2>
+            </div>
+            <ul>
+              {educationItems.map((item) => (
+                <li key={item.degree} className="pdf-edu-item">
+                  <p className="pdf-period">{item.period}</p>
+                  <h3>{item.degree}</h3>
+                  <p className="pdf-institution">{item.institution}</p>
+                  <p className="pdf-level">{item.level}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-        <section className="pdf-section" aria-labelledby="pdf-informatica">
-          <div className="pdf-section-head">
-            <div className="pdf-mark" aria-hidden />
-            <h2 id="pdf-informatica">{copy.sections.computerSkills}</h2>
-          </div>
-          <ul>
-            {cv.computerSkills.map((skill) => (
-              <li key={skill.name} className="pdf-skill">
-                <span className="pdf-skill-name">{skill.name}</span>
-                <span className="pdf-skill-level">{skill.level}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+          <section className="pdf-section" aria-labelledby="pdf-informatica">
+            <div className="pdf-section-head">
+              <div className="pdf-mark" aria-hidden />
+              <h2 id="pdf-informatica">{copy.sections.computerSkills}</h2>
+            </div>
+            <ul>
+              {cv.computerSkills.map((skill) => (
+                <li key={skill.name} className="pdf-skill">
+                  <span className="pdf-skill-name">{skill.name}</span>
+                  <span className="pdf-skill-level">{skill.level}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
     </div>
   );

@@ -149,7 +149,7 @@ The color discipline is the point: one strong color (deep navy) carries the iden
 - Terracotta strictly at decorative scale: 1px hairlines, the 14px "now" dot, low-alpha underline and selection tints, and the keyboard focus ring.
 - Flat by default: exactly one soft diffuse shadow and one 1px ring, both under the arch.
 - One authored motion (the self-drawing spine); all other motion is once-only fade-up.
-- A white-sheeted A4 PDF twin (`/pdf` → `public/cv.pdf`) reuses the same voice on the real self-hosted fonts: same section titles, same order, print discipline.
+- A white-sheeted A4 PDF twin (`/pdf` → `public/cv.pdf`) reuses the same voice on the real self-hosted fonts: same section titles, same order, one page — Educación and Informática share the bottom row.
 
 ## Colors
 
@@ -264,11 +264,11 @@ The hero enters once on load: opacity and 18px rise over 600ms, ease `cubic-bezi
 
 The downloadable CV is a real A4 PDF — selectable text, not an image — committed to the repo as `public/cv.pdf`, generated from the in-shell page `/pdf` (noindex + `Disallow: /pdf`), and served at `/cv.pdf`; the download button saves it as `Veronica-Plodzien-CV.pdf`. Because the page lives inside the app shell, the PDF carries the real self-hosted Fraunces/DM Sans — the 501-era system-font exemption died with the 501 page.
 
-- **White sheet only** (explicit owner decision): no background color on the sheet or on any block, so it prints clean on plain paper. In print, the on-screen frame (border, shadow, padding, `--paper-deep` ground) is dissolved and `@page { size: A4; margin: 15mm }` owns the box (Playwright `preferCSSPageSize`); on screen the white sheet floats over `--paper-deep` the way the web page floats over cream.
-- **Same voice, print scale** (all explicit in pt, since Tailwind's preflight removed the defaults): name 24pt Fraunces navy; section titles 14pt; entry titles 11.5pt; body 10.5pt DM Sans at 1.45; periods/levels 9pt tabular, +0.025em. The tokens still drive the colors: ink/navy text, terracotta marks, `--ink` at 10% for dividers.
+- **White sheet only** (explicit owner decision): no background color on the sheet or on any block, so it prints clean on plain paper. In print, the on-screen frame (border, shadow, padding, `--paper-deep` ground) is dissolved and `@page { size: A4; margin: 14mm }` owns the box (Playwright `preferCSSPageSize`); on screen the white sheet floats over `--paper-deep` the way the web page floats over cream.
+- **Same voice, print scale** (all explicit in pt, since Tailwind's preflight removed the defaults): name 24pt Fraunces navy; section titles 14pt; entry titles 11.5pt; body 10.5pt DM Sans (line-height 1.4); periods 9pt tabular, +0.025em; levels 9.5pt — the owner's floors: descriptions ≥ 10pt, dates/labels ≥ 9pt. The tokens still drive the colors: navy titles, terracotta marks, `--ink` at 10% for dividers; the secondary text (descriptions, periods, levels, contact) sits on a sheet-local print gray `#444c59` (8.67:1 on white) because the web's ink-soft (6.85:1 on white) prints too light — the web page keeps its own tone.
 - **Header**: small arch portrait (84px) left of the name; a flat contact line — phone as visible text (`+54 381 501-7189`), email, “city, province, country”, separated by “·”; the profile directly below. Then Experiencia laboral → Educación → Informática — the same titles, order, and approved texts as the web.
 - **The only terracotta in the PDF**: the 32px × 1px hairline above each section title (and under the name) and the 7px dot marking the current position. No buttons, no icons, no visible link styling anywhere.
-- **Fit and page breaks**: 1–2 pages; entries are `break-inside: avoid`; each hairline + heading is one unit (`break-inside: avoid` + `break-after: avoid`) so a hairline can never be stranded at the bottom of a page.
+- **One page**: the CV fits a single A4 sheet (14 mm margins — the owner's floor; 15 mm before this fit). Educación (left, ~60%) and Informática (right, ~40) share a two-column row below Experiencia; the DOM order stays Experiencia → Educación → Informática, which is also the PDF reading order (Chromium lays out the left column before the right). Entries are `break-inside: avoid` and each hairline + heading is one unit (`break-inside`/`break-after: avoid`) — a safety net in case a future edit overflows to a second page.
 - **Regeneration**: `pnpm generate:pdf` (production build + Playwright/Chromium) or the monthly “Regenerate PDF” GitHub Actions workflow — see NOTES.md → Maintenance.
 
 ## Do's and Don'ts

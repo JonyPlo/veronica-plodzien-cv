@@ -40,7 +40,7 @@ rioplatense neutro. Los componentes no hardcodean español.
 ## PDF
 
 `/cv.pdf` sirve el PDF real del currículum (A4, texto seleccionable,
-máximo 2 páginas): el archivo vive en el repo como `public/cv.pdf` y el
+máximo una página A4): el archivo vive en el repo como `public/cv.pdf` y el
 botón “Descargar CV (PDF)” lo guarda como `Veronica-Plodzien-CV.pdf`
 (atributo `download`, sin tildes).
 
